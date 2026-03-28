@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-white text-primary antialiased;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply tracking-tight font-extrabold;
+  }
+}
+
+.glass-nav {
+  @apply bg-white/80 backdrop-blur-xl border-b border-primary/5 sticky top-0 z-50;
+}
+
+.kinetic-headline {
+  @apply text-[3.5rem] leading-[0.9] -tracking-[0.02em] uppercase font-black;
+}
+
+.editorial-h2 {
+  @apply text-[2rem] leading-tight font-bold;
+}
+
+.label-technical {
+  @apply text-[0.75rem] uppercase tracking-[0.1em] font-semibold opacity-60;
+}
+
+.input-minimal {
+  @apply bg-transparent border-b border-primary/20 py-2 focus:border-secondary focus:outline-none transition-colors duration-300;
+}

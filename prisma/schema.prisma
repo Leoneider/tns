@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model PageContent {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+model News {
+  id       String   @id @default(cuid())
+  title    String
+  content  String
+  imageUrl String?
+  date     DateTime @default(now())
+}
+
+model CSRStat {
+  id    String @id @default(cuid())
+  label String
+  value String
+  order Int    @default(0)
+}
+
+model Client {
+  id         String  @id @default(cuid())
+  name       String
+  logoUrl    String
+  websiteUrl String?
+  order      Int     @default(0)
+}
+
+model Certification {
+  id      String @id @default(cuid())
+  code    String
+  name    String
+  logoUrl String
+  order   Int    @default(0)
+}
+
+model Service {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  details     String @default("") // comma-separated product list (for LIQUID/DRY)
+  category    String // LIQUID | DRY | RESOURCE
+  icon        String @default("Package")
+  order       Int    @default(0)
+}
