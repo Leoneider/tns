@@ -1,6 +1,7 @@
 "use client";
 
 import { Truck } from 'lucide-react';
+import Image from 'next/image';
 
 export const Footer = () => (
   <footer className="bg-primary text-white py-20">
@@ -8,10 +9,13 @@ export const Footer = () => (
       <div className="grid md:grid-cols-4 gap-12 mb-20">
         <div className="col-span-2">
           <div className="flex items-center gap-2 mb-8">
-            <div className="w-8 h-8 bg-secondary flex items-center justify-center rounded-sm">
-              <Truck className="text-white w-5 h-5" />
-            </div>
-            <span className="text-xl font-black tracking-tighter uppercase italic">TNS</span>
+            <Image
+              src="/tns-logo.png"
+              alt="TNS Logo"
+              width={160}
+              height={60}
+              className="w-auto h-10 brightness-0 invert"
+            />
           </div>
           <p className="text-white/50 max-w-sm leading-relaxed">
             Transportadores de Norte de Santander S.A.S. - Soluciones logísticas de clase mundial con ADN regional.

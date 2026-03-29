@@ -4,6 +4,7 @@ import { Truck, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 export const Navbar = () => {
@@ -43,10 +44,14 @@ export const Navbar = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2 cursor-pointer group">
-          <div className="w-10 h-10 bg-secondary flex items-center justify-center rounded-sm transition-transform group-hover:rotate-12">
-            <Truck className="text-white w-6 h-6" />
-          </div>
-          <span className={`text-xl font-black tracking-tighter uppercase italic ${(!isScrolled && isDarkHeaderPage) ? 'text-white' : 'text-primary'}`}>TNS</span>
+          <Image
+            src="/tns-logo.png"
+            alt="TNS Logo"
+            width={160}
+            height={60}
+            className="w-auto h-10 transition-transform group-hover:scale-105"
+            priority
+          />
         </Link>
 
         {/* Desktop Nav */}
