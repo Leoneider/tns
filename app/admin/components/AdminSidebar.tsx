@@ -9,6 +9,7 @@ import {
   Newspaper, 
   Users,
   Truck,
+  Image as ImageIcon
 } from 'lucide-react';
 
 const navItems = [
@@ -16,6 +17,7 @@ const navItems = [
   { href: '/admin/servicios', label: 'Servicios', icon: Truck },
   { href: '/admin/textos', label: 'Textos Generales', icon: FileText },
   { href: '/admin/noticias', label: 'Gestión de Noticias', icon: Newspaper },
+  { href: '/admin/proyectos-sociales', label: 'Proyectos Sociales', icon: ImageIcon },
   { href: '/admin/cifras', label: 'Cifras CSR', icon: BarChart3 },
   { href: '/admin/clientes', label: 'Clientes Destacados', icon: Users },
 ];

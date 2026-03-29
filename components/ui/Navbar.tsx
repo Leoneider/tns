@@ -11,6 +11,9 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  // Add paths here that feature a dark background header at the very top
+  const isDarkHeaderPage = pathname === '/responsabilidad-social';
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
@@ -43,7 +46,7 @@ export const Navbar = () => {
           <div className="w-10 h-10 bg-secondary flex items-center justify-center rounded-sm transition-transform group-hover:rotate-12">
             <Truck className="text-white w-6 h-6" />
           </div>
-          <span className="text-xl font-black tracking-tighter uppercase italic">TNS</span>
+          <span className={`text-xl font-black tracking-tighter uppercase italic ${(!isScrolled && isDarkHeaderPage) ? 'text-white' : 'text-primary'}`}>TNS</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -52,7 +55,9 @@ export const Navbar = () => {
             <Link
               key={item.href}
               href={item.href}
-              className={`text-sm uppercase tracking-widest font-bold transition-all hover:text-secondary ${isActive(item.href) ? 'text-secondary' : 'text-primary/60'}`}
+              className={`text-sm uppercase tracking-widest font-bold transition-all hover:text-secondary ${
+                isActive(item.href) ? 'text-secondary' : (!isScrolled && isDarkHeaderPage) ? 'text-white/80' : 'text-primary/60'
+              }`}
             >
               {item.label}
             </Link>
@@ -61,14 +66,14 @@ export const Navbar = () => {
             href="https://wa.me/573182172113"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-white px-6 py-2 rounded-sm text-xs uppercase tracking-widest font-bold hover:bg-secondary transition-colors"
+            className={`${(!isScrolled && isDarkHeaderPage) ? 'bg-white text-primary hover:text-white' : 'bg-primary text-white'} px-6 py-2 rounded-sm text-xs uppercase tracking-widest font-bold hover:bg-secondary transition-colors`}
           >
             Cotizar
           </a>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        <button className={`md:hidden ${(!isScrolled && isDarkHeaderPage) ? 'text-white' : 'text-primary'}`} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X /> : <Menu />}
         </button>
       </div>

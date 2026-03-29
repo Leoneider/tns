@@ -210,6 +210,52 @@ async function main() {
   });
 
   console.log('✅ Clients seeded successfully!');
+
+  // --- PROYECTOS SOCIALES ---
+  await prisma.socialProject.deleteMany();
+
+  await prisma.socialProject.createMany({
+    data: [
+      {
+        title: 'Entrega de Kits Escolares en Tibú',
+        description: 'Llevamos 64 kits de materiales educativos (cuadernos, lápices, colores y mochilas) a niños y niñas de la Institución Educativa Rural de Tibú, impactando directamente su rendimiento academic.',
+        imageUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200',
+        order: 1,
+      },
+      {
+        title: 'Apoyo a Familias en Sardinata',
+        description: 'Visitamos a 20 familias vulnerables de Sardinata, entregando mercados familiares y brindando acompañamiento psicosocial en alianza con la Alcaldía Local.',
+        imageUrl: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=1200',
+        order: 2,
+      },
+      {
+        title: 'Jornada de Pintura — San Agustín de los Pozos',
+        description: 'Jornada de embellecimiento y adecuación de la escuela rural de San Agustín de los Pozos, con la participación voluntaria de colaboradores de TNS y líderes de la comunidad.',
+        imageUrl: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=1200',
+        order: 3,
+      },
+      {
+        title: 'Día del Niño con la Comunidad',
+        description: 'Celebramos el Día del Niño con actividades lúdicas, juegos y obsequios para más de 150 niños de las comunidades de Tibú y Sardinata. Un día lleno de alegría y esperanza.',
+        imageUrl: 'https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&q=80&w=1200',
+        order: 4,
+      },
+      {
+        title: 'Formación en Habilidades para la Vida',
+        description: 'Realizamos talleres de liderazgo, emprendimiento y habilidades socioemocionales dirigidos a jóvenes de 7 instituciones educativas del norte de Santander.',
+        imageUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200',
+        order: 5,
+      },
+      {
+        title: 'Reforestación y Cuidado Ambiental',
+        description: 'Junto a docentes y estudiantes sembramos más de 200 árboles nativos en la cuenca del río Catatumbo, como parte de nuestro compromiso con el medio ambiente y el futuro de la región.',
+        imageUrl: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1200',
+        order: 6,
+      },
+    ],
+  });
+
+  console.log('✅ Social Projects seeded successfully!');
 }
 
 main()

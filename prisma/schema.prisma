@@ -54,3 +54,12 @@ model Service {
   icon        String @default("Package")
   order       Int    @default(0)
 }
+
+model SocialProject {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  imageUrl    String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
