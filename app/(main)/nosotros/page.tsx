@@ -18,10 +18,10 @@ export default function Nosotros() {
           <div className="relative group">
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary/10 -z-10 rounded-sm"></div>
             <img 
-              alt="TNS Logistics Fleet" 
-              className="w-full aspect-video object-cover rounded-sm shadow-2xl transition-transform duration-700 group-hover:scale-105 grayscale" 
-              data-alt="Modern logistics hub with heavy trucks lined up under dramatic sunset lighting with high contrast industrial aesthetic" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPTAZDoXcg8m91x8dLev8t001x4YDN2aUIGI9jrgZAj1oaUb5WazO0Erg307mWcXReeH7BA_coKqIKwPKDlOSsrISlkceBkrvVdfGH7lnhFzDt7zwGCU4xtqkr-2ewz7IXkSDxY1ySEFdYK7Ml-f8ejT3px5vP2YtiSJe2RM5InWevS9wzeboIeCvfEYQG8kpuJ_bKsuCooUsP6YItnInqIn8v6MvpLqmFMt8VvXCdt8hYp4Vqwa5jz3w6yWj1qH_fPdr2tkKUCLwC"
+              alt="TNS Logistics en la carretera al atardecer" 
+              className="w-full aspect-video object-cover rounded-sm shadow-2xl transition-transform duration-700 group-hover:scale-105" 
+              data-alt="Los camiones circulan por una carretera al atardecer" 
+              src="https://images.unsplash.com/photo-1745956983820-6e960f7e8472?auto=format&fit=crop&q=80&w=2000"
             />
           </div>
         </div>
