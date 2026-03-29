@@ -1,5 +1,5 @@
 import { ServicesGrid } from '@/components/ui/ServicesGrid';
-import { ContactSection } from '@/components/ui/ContactSection';
+import { ContactForm } from '@/components/ui/ContactForm';
 
 export const metadata = {
   title: 'Servicios | TNS',
@@ -18,7 +18,7 @@ export default function Servicios() {
         </p>
       </div>
       <ServicesGrid />
-      <ContactSection />
+      <ContactForm />
     </div>
   );
 }

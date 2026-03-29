@@ -1,4 +1,4 @@
-import { ContactSection } from '@/components/ui/ContactSection';
+import { ContactForm } from '@/components/ui/ContactForm';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 import { SocialGallery } from '@/components/ui/SocialGallery';
 import prisma from '@/lib/prisma';
@@ -95,7 +95,7 @@ export default async function ResponsabilidadSocial() {
 
       <SocialGallery projects={projects} />
 
-      <ContactSection />
+      <ContactForm />
     </main>
   );
 }

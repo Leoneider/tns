@@ -2,7 +2,7 @@ import { Hero } from '@/components/ui/Hero';
 import { ServicesGrid } from '@/components/ui/ServicesGrid';
 import { TrackingSection } from '@/components/ui/TrackingSection';
 import { AboutSection } from '@/components/ui/AboutSection';
-import { ContactSection } from '@/components/ui/ContactSection';
+import { ContactForm } from '@/components/ui/ContactForm';
 
 export const metadata = {
   title: 'TNS - Transportadores de Norte de Santander',
@@ -16,7 +16,7 @@ export default function Home() {
       <ServicesGrid />
       <TrackingSection />
       <AboutSection />
-      <ContactSection />
+      <ContactForm />
     </>
   );
 }

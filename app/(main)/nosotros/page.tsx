@@ -128,10 +128,10 @@ export default function Nosotros() {
           </div>
           <div className="lg:col-span-6 -ml-0 lg:-ml-24 mt-8 lg:mt-0 overflow-hidden rounded-sm group">
             <img 
-              alt="TNS Infrastructure" 
-              className="w-full h-[500px] object-cover rounded-sm grayscale group-hover:scale-110 transition-transform duration-700 shadow-xl" 
-              data-alt="Modern logistics warehouse interior with high ceilings and organized shipping containers in bright daylight" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDBe2WI3G_-w2NVpHsynqStnwsus4HvPhTM-4xWAJ2-aI_eWwXPFuhVuCcLxeAKDthujgdS3gHz6MITzs_HNpXcVbVzpQyKGTP3uwCJ8bCv6-N5GzDbNjcZU1m5by6H3ip4wYSv2bCGW6ZSzLeghFAt5-sAoa-Z73OOBaEtJ2QzIvV8OyIsjieeFauEESbndX5r76QlzadxJGJ1i7F7UkV3Arah5tPEH5goJ-LWryHwnXdPgnS3SFuzATu_qUzXOwPQC5kaEo2Uuen"
+              alt="Mapa de Colombia con rutas desde Norte de Santander" 
+              className="w-full h-[500px] object-cover rounded-sm group-hover:scale-110 transition-transform duration-700 shadow-xl" 
+              data-alt="Mapa estilizado de Colombia con flechas rojas saliendo del departamento de Norte de Santander hacia el resto del país" 
+              src="/mapa_colombia.png"
             />
           </div>
         </div>

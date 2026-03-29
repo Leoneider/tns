@@ -1,4 +1,4 @@
-import { ContactSection } from '@/components/ui/ContactSection';
+import { ContactForm } from '@/components/ui/ContactForm';
 
 export const metadata = {
   title: 'Políticas | TNS',
@@ -38,7 +38,7 @@ export default function Politicas() {
           ))}
         </div>
       </section>
-      <ContactSection />
+      <ContactForm />
     </div>
   );
 }
