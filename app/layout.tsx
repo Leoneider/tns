@@ -4,9 +4,33 @@ import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Transportadores de Norte de Santander (TNS) - Carga Líquida y Seca",
-  description: "TNS es una empresa especializada en el transporte terrestre de carga líquida y seca en Colombia por más de 10 años, garantizando un transporte seguro y eficiente.",
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "TNS - Transportadores de Norte de Santander",
+  description: "Soluciones logísticas de clase mundial con ADN regional. Transporte de carga líquida y seca en Colombia.",
+  openGraph: {
+    title: "TNS - Transportadores de Norte de Santander",
+    description: "Soluciones logísticas de clase mundial con ADN regional. Transporte de carga líquida y seca en Colombia.",
+    url: "https://www.tns.com.co", // Asegúrate de actualizar esto con tu dominio real
+    siteName: "TNS",
+    images: [
+      {
+        url: "/tns-logo.png", // Se usará tu logotipo como imagen de previsualización por defecto
+        width: 1200,
+        height: 630,
+        alt: "TNS - Logística y Transporte",
+      },
+    ],
+    locale: "es_CO",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TNS - Transportadores de Norte de Santander",
+    description: "Soluciones logísticas de clase mundial con ADN regional. Transporte de carga líquida y seca en Colombia.",
+    images: ["/tns-logo.png"], // Se usa la misma imagen para Twitter
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
