@@ -47,17 +47,10 @@ export function ClientsCarousel({ clients }: ClientsCarouselProps) {
           className={`flex w-max min-w-full gap-8 py-4 px-4 ${start ? 'animate-infinite-scroll' : ''
             } hover:[animation-play-state:paused]`}
         >
-          {clients.map((c, index) => {
-            const Wrapper = (c as any).websiteUrl ? 'a' : 'div';
-            const wrapperProps = (c as any).websiteUrl
-              ? { href: (c as any).websiteUrl, target: '_blank', rel: 'noopener noreferrer' }
-              : {};
-
-            return (
-              <Wrapper
+          {clients.map((c, index) => (
+              <div
                 key={`${c.id}-${index}`}
-                {...wrapperProps}
-                className="group flex flex-col items-center justify-center p-6 bg-white border border-gray-100 rounded-2xl w-[250px] flex-shrink-0 transition-transform cursor-pointer hover:-translate-y-2 hover:shadow-xl hover:shadow-orange-500/10 hover:border-orange-100"
+                className="group flex flex-col items-center justify-center p-6 bg-white border border-gray-100 rounded-2xl w-[250px] flex-shrink-0 transition-transform hover:-translate-y-2 hover:shadow-xl hover:shadow-orange-500/10 hover:border-orange-100"
               >
                 {c.logoUrl ? (
                   <div className="relative w-full h-20 mb-4 transition-transform group-hover:scale-110">
@@ -79,9 +72,9 @@ export function ClientsCarousel({ clients }: ClientsCarouselProps) {
                 {/* <h3 className="text-sm font-bold text-gray-800 text-center uppercase tracking-wide">
                 {c.name}
               </h3> */}
-              </Wrapper>
+              </div>
             )
-          })}
+          )}
         </div>
       </div>
     </section>

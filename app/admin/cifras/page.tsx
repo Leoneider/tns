@@ -1,21 +1,17 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 
-async function createCSRStat(formData: FormData) {
+export const dynamic = 'force-dynamic';
+
+async function updateCSRStat(formData: FormData) {
   'use server';
-  await prisma.cSRStat.create({
+  await prisma.cSRStat.update({
+    where: { id: formData.get('id') as string },
     data: {
       label: formData.get('label') as string,
       value: formData.get('value') as string,
     }
   });
-  revalidatePath('/admin/cifras');
-  revalidatePath('/responsabilidad-social');
-}
-
-async function deleteCSRStat(formData: FormData) {
-  'use server';
-  await prisma.cSRStat.delete({ where: { id: formData.get('id') as string } });
   revalidatePath('/admin/cifras');
   revalidatePath('/responsabilidad-social');
 }
@@ -28,69 +24,68 @@ export default async function CifrasPage() {
       <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100/80">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Cifras CSR</h1>
         <p className="text-gray-500 text-lg">
-          Gestiona las estadísticas de Responsabilidad Social Corporativa.
+          Modifica los valores de las estadísticas de Responsabilidad Social Corporativa.
+          <br/>
+          <span className="text-sm border border-orange-200 bg-orange-50 text-orange-700 px-3 py-1 rounded-xl inline-block mt-3">
+            El diseño está bloqueado a las 3 métricas principales por requerimiento. No se pueden agregar ni eliminar más cajas.
+          </span>
         </p>
       </div>
 
       <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100/80">
         <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-          <span className="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-black pb-1">+</span>
-          Añadir Nueva Cifra
+          <span className="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-black pb-1">✏️</span>
+          Editar Cifras Actuales
         </h2>
-        <form action={createCSRStat} className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-          <input 
-            type="text" 
-            name="label" 
-            placeholder="Etiqueta (ej. Familias impactadas)" 
-            required 
-            className="w-full sm:flex-1 rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all font-medium"
-          />
-          <input 
-            type="text" 
-            name="value" 
-            placeholder="Valor (ej. +60)" 
-            required 
-            className="w-full sm:w-48 rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all font-bold text-center text-purple-600"
-          />
-          <button 
-            type="submit" 
-            className="w-full sm:w-auto rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-medium px-8 py-3 transition-colors shadow-sm hover:shadow-md whitespace-nowrap"
-          >
-            Añadir Cifra
-          </button>
-        </form>
-      </div>
-
-      <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100/80">
-        <h2 className="text-xl font-bold text-gray-800 mb-6">Cifras Actuales</h2>
         
         {csrStats.length === 0 && (
           <div className="p-8 text-center text-gray-500 bg-gray-50 rounded-2xl border border-gray-100 border-dashed">
-             No hay cifras añadidas todavía.
+             No hay cifras añadidas todavía. Ejecuta el script de semilla para crearlas.
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="flex flex-col gap-6">
           {csrStats.map((s) => (
-            <div key={s.id} className="relative group p-6 rounded-2xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:border-purple-100 hover:shadow-md transition-all text-center flex flex-col justify-center items-center h-48">
-              <span className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-purple-500 to-indigo-600 mb-2">
-                {s.value}
-              </span>
-              <span className="text-sm font-semibold text-gray-600 uppercase tracking-widest mt-2 px-4 leading-tight">
-                {s.label}
-              </span>
+            <form key={s.id} action={updateCSRStat} className="relative group p-6 rounded-2xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:border-purple-100 hover:shadow-md transition-all">
+              <input type="hidden" name="id" value={s.id} />
               
-              {/* Delete Button (appears on hover) */}
-              <form action={deleteCSRStat} className="absolute inset-x-0 bottom-0 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                <input type="hidden" name="id" value={s.id} />
-                <button 
-                  type="submit" 
-                  className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-3 rounded-b-2xl transition-colors shadow-sm text-sm"
-                >
-                  Eliminar
-                </button>
-              </form>
-            </div>
+              <div className="flex flex-col md:flex-row gap-5 items-end justify-between">
+                <div className="w-full md:flex-1">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2 pl-1">
+                    Label (Texto debajo de la cifra)
+                  </label>
+                  <input 
+                    type="text" 
+                    name="label" 
+                    defaultValue={s.label}
+                    required 
+                    className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all font-medium uppercase text-sm tracking-wider"
+                  />
+                </div>
+                
+                <div className="w-full md:w-48 xl:w-56">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2 pl-1">
+                    Valor exacto (Ej. 20+)
+                  </label>
+                  <input 
+                    type="text" 
+                    name="value" 
+                    defaultValue={s.value}
+                    required 
+                    className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all font-black text-center text-purple-600 text-lg"
+                  />
+                </div>
+                
+                <div className="w-full md:w-auto mt-4 md:mt-0">
+                  <button 
+                    type="submit" 
+                    className="w-full md:w-auto bg-gray-900 hover:bg-black text-white px-6 py-3 rounded-xl transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 font-medium"
+                  >
+                    Guardar
+                  </button>
+                </div>
+              </div>
+            </form>
           ))}
         </div>
       </div>

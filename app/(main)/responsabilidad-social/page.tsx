@@ -8,8 +8,18 @@ export const metadata = {
   description: 'Nuestro compromiso con las comunidades, el medio ambiente y el desarrollo sostenible de Norte de Santander.',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function ResponsabilidadSocial() {
   let projects: any[] = [];
+  let csrStats: any[] = [];
+  
+  try {
+    csrStats = await prisma.cSRStat.findMany();
+  } catch (_e) {
+    console.warn("Failed to fetch CSRStats:", _e);
+  }
+
   try {
     projects = await (prisma as any).socialProject.findMany({
       orderBy: { order: 'asc' },
@@ -59,29 +69,28 @@ export default async function ResponsabilidadSocial() {
           </div>
 
           {/* Right stats block */}
-          <div className="md:w-2/3 bg-white py-16 px-4 md:px-10 flex flex-col md:flex-row justify-around items-center gap-12 md:gap-4">
-
-            <div className="text-center w-full px-4 group hover:-translate-y-2 transition-transform duration-300 cursor-default">
-              <div className="text-7xl font-light text-primary flex items-center justify-center mb-4 tracking-tighter group-hover:scale-110 group-hover:text-secondary transition-all duration-500">
-                <AnimatedCounter value={20} duration={2000} /><span className="text-secondary font-medium ml-1 text-6xl group-hover:scale-110 transition-transform duration-500">+</span>
+          <div className="md:w-2/3 bg-white py-16 px-4 md:px-10 flex flex-col md:flex-row justify-around items-center gap-12 md:gap-4 md:divide-x md:divide-primary/10">
+            {csrStats.length > 0 ? (
+              csrStats.map((stat, idx) => {
+                const numberValue = parseInt(stat.value) || 0;
+                // Extraer el símbolo (como "M", "+", "%") removiendo los números
+                const symbol = stat.value.replace(/[0-9]/g, '').trim() || '+';
+                
+                return (
+                  <div key={stat.id} className="text-center w-full flex-1 px-4 group hover:-translate-y-2 transition-transform duration-300 cursor-default">
+                    <div className="text-7xl font-light text-primary flex items-center justify-center mb-4 tracking-tighter group-hover:scale-110 group-hover:text-secondary transition-all duration-500">
+                      <AnimatedCounter value={numberValue} duration={2000} />
+                      <span className="text-secondary font-medium ml-1 text-6xl group-hover:scale-110 transition-transform duration-500">{symbol}</span>
+                    </div>
+                    <div className="text-[0.80rem] font-bold text-primary/60 tracking-widest uppercase group-hover:text-primary/90 transition-colors duration-300">{stat.label}</div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className="text-center w-full text-primary/50 italic">
+                Agrega cifras en el panel administrativo para mostrarlas aquí.
               </div>
-              <div className="text-[0.80rem] font-bold text-primary/60 tracking-widest uppercase group-hover:text-primary/90 transition-colors duration-300">Familias Impactadas</div>
-            </div>
-
-            <div className="text-center w-full px-4 border-t md:border-t-0 md:border-l border-primary/10 pt-12 md:pt-0 group hover:-translate-y-2 transition-transform duration-300 cursor-default">
-              <div className="text-7xl font-light text-primary flex items-center justify-center mb-4 tracking-tighter group-hover:scale-110 group-hover:text-secondary transition-all duration-500">
-                <AnimatedCounter value={7} duration={2000} /><span className="text-secondary font-medium ml-1 text-6xl group-hover:scale-110 transition-transform duration-500">+</span>
-              </div>
-              <div className="text-[0.80rem] font-bold text-primary/60 tracking-widest uppercase group-hover:text-primary/90 transition-colors duration-300">Instituciones Educativas</div>
-            </div>
-
-            <div className="text-center w-full px-4 border-t md:border-t-0 md:border-l border-primary/10 pt-12 md:pt-0 group hover:-translate-y-2 transition-transform duration-300 cursor-default">
-              <div className="text-7xl font-light text-primary flex items-center justify-center mb-4 tracking-tighter group-hover:scale-110 group-hover:text-secondary transition-all duration-500">
-                <AnimatedCounter value={64} duration={2000} /><span className="text-secondary font-medium ml-1 text-6xl text-secondary group-hover:scale-110 transition-transform duration-500">+</span>
-              </div>
-              <div className="text-[0.80rem] font-bold text-primary/60 tracking-widest uppercase group-hover:text-primary/90 transition-colors duration-300">Materiales Educativos</div>
-            </div>
-
+            )}
           </div>
         </div>
 

@@ -54,12 +54,7 @@ export default async function ClientesPage() {
             placeholder="URL del logo (opcional)"
             className="w-full sm:flex-1 rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all text-sm"
           />
-          <input
-            type="url"
-            name="websiteUrl"
-            placeholder="URL del sitio web (opcional)"
-            className="w-full sm:flex-1 rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all text-sm"
-          />
+
           <button
             type="submit"
             className="w-full sm:w-auto rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-medium px-8 py-3 transition-colors shadow-sm hover:shadow-md whitespace-nowrap"
@@ -107,11 +102,6 @@ export default async function ClientesPage() {
 
               <div className="flex flex-col items-center">
                 <span className="font-semibold text-gray-800 text-sm leading-tight text-center">{c.name}</span>
-                {(c as any).websiteUrl && (
-                  <a href={(c as any).websiteUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-orange-600 hover:underline px-4 mt-1 bg-white relative z-10 text-center">
-                    Visitar web
-                  </a>
-                )}
               </div>
 
               {/* Delete Button (appears on hover) */}

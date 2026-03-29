@@ -46,8 +46,7 @@ export async function ServicesGrid() {
                   Carga Líquida
                 </span>
                 <h2 className="text-4xl font-black text-gray-900 uppercase leading-tight mb-6">
-                  Transporte de <br />
-                  <span className="text-red-600">fluidos especializados</span>
+                  {liquidService.title}
                 </h2>
                 <p className="text-gray-600 leading-relaxed text-lg mb-10">
                   {liquidService.description}
@@ -121,8 +120,7 @@ export async function ServicesGrid() {
                   Carga Seca
                 </span>
                 <h2 className="text-4xl font-black text-gray-900 uppercase leading-tight mb-6">
-                  Transporte de <br />
-                  <span className="text-amber-600">mercancía seca</span>
+                  {dryService.title}
                 </h2>
                 <p className="text-gray-600 leading-relaxed text-lg mb-10">
                   {dryService.description}
