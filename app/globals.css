@@ -19,11 +19,11 @@
 }
 
 .kinetic-headline {
-  @apply text-[3.5rem] leading-[0.9] -tracking-[0.02em] uppercase font-black;
+  @apply text-4xl sm:text-5xl md:text-[3.5rem] lg:text-[4.5rem] leading-[0.9] -tracking-[0.02em] uppercase font-black break-words;
 }
 
 .editorial-h2 {
-  @apply text-[2rem] leading-tight font-bold;
+  @apply text-3xl sm:text-[2rem] leading-tight font-bold break-words;
 }
 
 .label-technical {
