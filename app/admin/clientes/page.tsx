@@ -1,13 +1,26 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import Image from 'next/image';
+import { uploadImageToSupabase } from '@/lib/supabase-storage';
 
 async function createClient(formData: FormData) {
   'use server';
+
+  let logoUrl = '';
+  const logoFile = formData.get('logoFile') as File | null;
+  
+  if (logoFile && logoFile.size > 0) {
+    try {
+      logoUrl = await uploadImageToSupabase(logoFile, 'clientes');
+    } catch (error) {
+      console.error("Error uploading logo:", error);
+    }
+  }
+
   await prisma.client.create({
     data: {
       name: formData.get('name') as string,
-      logoUrl: (formData.get('logoUrl') as string) || '',
+      logoUrl: logoUrl,
       // @ts-ignore
       websiteUrl: (formData.get('websiteUrl') as string) || null,
     }
@@ -48,12 +61,15 @@ export default async function ClientesPage() {
             required
             className="w-full sm:flex-1 rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all font-medium"
           />
-          <input
-            type="url"
-            name="logoUrl"
-            placeholder="URL del logo (opcional)"
-            className="w-full sm:flex-1 rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all text-sm"
-          />
+          <div className="w-full sm:flex-1">
+            <input
+              type="file"
+              name="logoFile"
+              accept="image/*"
+              className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all text-sm mb-1 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100"
+            />
+            <p className="text-xs text-gray-500 pl-2">Recomendado: 400x400px o cuadrado (PNG transparente)</p>
+          </div>
 
           <button
             type="submit"

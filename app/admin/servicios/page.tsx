@@ -1,5 +1,6 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import { uploadImageToSupabase } from '@/lib/supabase-storage';
 
 const CATEGORIES = [
   { value: 'LIQUID', label: 'Carga Líquida' },
@@ -11,15 +12,34 @@ const ICONS = ['Droplets', 'Package', 'Truck', 'Users', 'UserCheck', 'ClipboardL
 
 async function updateService(formData: FormData) {
   'use server';
+
+  const id = formData.get('id') as string;
+  const imageFile = formData.get('imageFile') as File | null;
+  let imageUrl: string | undefined = undefined;
+
+  if (imageFile && imageFile.size > 0) {
+    try {
+      imageUrl = await uploadImageToSupabase(imageFile, 'servicios');
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  }
+
+  const dataToUpdate: any = {
+    title: formData.get('title') as string,
+    description: formData.get('description') as string,
+    details: (formData.get('details') as string) || '',
+    icon: formData.get('icon') as string,
+    order: parseInt(formData.get('order') as string) || 0,
+  };
+
+  if (imageUrl) {
+    (dataToUpdate as any).imageUrl = imageUrl;
+  }
+
   await prisma.service.update({
-    where: { id: formData.get('id') as string },
-    data: {
-      title: formData.get('title') as string,
-      description: formData.get('description') as string,
-      details: (formData.get('details') as string) || '',
-      icon: formData.get('icon') as string,
-      order: parseInt(formData.get('order') as string) || 0,
-    },
+    where: { id },
+    data: dataToUpdate,
   });
   revalidatePath('/admin/servicios');
   revalidatePath('/servicios');
@@ -131,6 +151,22 @@ export default async function ServiciosAdminPage() {
                 />
               </div>
             )}
+
+            <div className="mb-6">
+              <label className="block text-sm font-semibold text-gray-700 mb-1.5 pl-1">
+                Imagen Destacada (Opcional)
+              </label>
+              <input
+                type="file"
+                name="imageFile"
+                accept="image/*"
+                className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all text-sm mb-1 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
+              />
+              <p className="text-xs text-gray-500 pl-2">Tamaño recomendado: 800x600 px o superior (Horizontal). Se usa en Carga Líquida y Carga Seca.</p>
+              {(service as any).imageUrl && (
+                <p className="text-xs text-green-600 pl-2 mt-2">Ya existe una imagen cargada. Subir una nueva la reemplazará.</p>
+              )}
+            </div>
 
             <div className="flex justify-end border-t border-gray-100 pt-6">
               <button

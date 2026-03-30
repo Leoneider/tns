@@ -53,6 +53,7 @@ model Service {
   details     String @default("") // comma-separated product list (for LIQUID/DRY)
   category    String // LIQUID | DRY | RESOURCE
   icon        String @default("Package")
+  imageUrl    String?
   order       Int    @default(0)
 }
 

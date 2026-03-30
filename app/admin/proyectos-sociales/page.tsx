@@ -1,14 +1,27 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import Image from 'next/image';
+import { uploadImageToSupabase } from '@/lib/supabase-storage';
 
 async function createProject(formData: FormData) {
   'use server';
+
+  let imageUrl = '';
+  const imageFile = formData.get('imageFile') as File | null;
+  
+  if (imageFile && imageFile.size > 0) {
+    try {
+      imageUrl = await uploadImageToSupabase(imageFile, 'proyectos-sociales');
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  }
+
   await (prisma as any).socialProject.create({
     data: {
       title: formData.get('title') as string,
       description: formData.get('description') as string,
-      imageUrl: formData.get('imageUrl') as string,
+      imageUrl: imageUrl,
       order: 0,
     }
   });
@@ -49,13 +62,16 @@ export default async function SocialProjectsAdmin() {
               required 
               className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all font-medium"
             />
-            <input 
-              type="url" 
-              name="imageUrl" 
-              placeholder="URL de la imagen (Unsplash o externa)" 
-              required
-              className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all text-sm"
-            />
+            <div className="w-full">
+              <input 
+                type="file" 
+                name="imageFile" 
+                accept="image/*"
+                required
+                className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all text-sm mb-1 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
+              />
+              <p className="text-xs text-gray-500 pl-2">Tamaño recomendado: 800x600 px o superior (Horizontal)</p>
+            </div>
           </div>
           <textarea 
             name="description" 

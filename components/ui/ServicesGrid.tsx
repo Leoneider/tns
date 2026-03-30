@@ -74,10 +74,11 @@ export async function ServicesGrid() {
               {/* Image */}
               <div className="relative h-[420px] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/liquid-cargo.png"
+                  src={(liquidService as any).imageUrl || "/liquid-cargo.png"}
                   alt="Transporte de carga líquida - cisterna TNS"
                   fill
                   className="object-cover"
+                  unoptimized={!!(liquidService as any).imageUrl}
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-transparent to-transparent" />
@@ -102,10 +103,11 @@ export async function ServicesGrid() {
               {/* Image (left on this one) */}
               <div className="relative h-[420px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1">
                 <Image
-                  src="/dry-cargo.png"
+                  src={(dryService as any).imageUrl || "/dry-cargo.png"}
                   alt="Transporte de carga seca - TNS"
                   fill
                   className="object-cover"
+                  unoptimized={!!(dryService as any).imageUrl}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6">
