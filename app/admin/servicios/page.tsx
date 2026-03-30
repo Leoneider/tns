@@ -152,33 +152,35 @@ export default async function ServiciosAdminPage() {
               </div>
             )}
 
-            <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5 pl-1">
-                Imagen Destacada (Opcional)
-              </label>
-              <input
-                type="file"
-                name="imageFile"
-                accept="image/*"
-                className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all text-sm mb-1 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
-              />
-              <p className="text-xs text-gray-500 pl-2">Tamaño recomendado: 800x600 px o superior (Horizontal). Se usa en Carga Líquida y Carga Seca.</p>
-              {(service as any).imageUrl && (
-                <div className="mt-4 border border-gray-100 rounded-xl p-4 bg-gray-50/50 flex gap-4 items-center">
-                  <div className="relative w-32 h-20 rounded-lg overflow-hidden border border-gray-200 bg-white flex-shrink-0">
-                    <img 
-                      src={(service as any).imageUrl} 
-                      alt="Vista previa" 
-                      className="object-cover w-full h-full"
-                    />
+            {service.category !== 'RESOURCE' && (
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5 pl-1">
+                  Imagen Destacada (Opcional)
+                </label>
+                <input
+                  type="file"
+                  name="imageFile"
+                  accept="image/*"
+                  className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all text-sm mb-1 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
+                />
+                <p className="text-xs text-gray-500 pl-2">Tamaño recomendado: 800x600 px o superior (Horizontal). Se usa en Carga Líquida y Carga Seca.</p>
+                {(service as any).imageUrl && (
+                  <div className="mt-4 border border-gray-100 rounded-xl p-4 bg-gray-50/50 flex gap-4 items-center">
+                    <div className="relative w-32 h-20 rounded-lg overflow-hidden border border-gray-200 bg-white flex-shrink-0">
+                      <img 
+                        src={(service as any).imageUrl} 
+                        alt="Vista previa" 
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-700">Imagen actual publicada</p>
+                      <p className="text-xs text-green-600 mt-1">Si seleccionas un archivo nuevo arriba, esta imagen se reemplazará.</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-700">Imagen actual publicada</p>
-                    <p className="text-xs text-green-600 mt-1">Si seleccionas un archivo nuevo arriba, esta imagen se reemplazará.</p>
-                  </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            )}
 
             <div className="flex justify-end border-t border-gray-100 pt-6">
               <button
