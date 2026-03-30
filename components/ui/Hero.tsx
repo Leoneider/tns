@@ -9,13 +9,15 @@ export const Hero = ({ onAction }: { onAction?: any }) => (
   <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
     <div className="absolute inset-0 z-0">
       <Image 
-        src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=2000" 
-        className="w-full h-full object-cover grayscale opacity-20"
+        src="/hero-bg.png" 
+        className="w-full h-full object-cover object-center grayscale opacity-35"
         alt="Logistics background"
         fill
-        referrerPolicy="no-referrer"
+        priority
       />
-      <div className="absolute inset-0 bg-gradient-to-tr from-white via-white/80 to-transparent" />
+      {/* Cubre centro-izquierda para legibilidad, pero deja ver la imagen en las esquinas */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-white/60 to-white/0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/0 to-white/20" />
     </div>
 
     <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
