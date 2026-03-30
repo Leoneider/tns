@@ -1,6 +1,7 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import Image from 'next/image';
+import Link from 'next/link';
 import { uploadImageToSupabase } from '@/lib/supabase-storage';
 import FormWithToast from '../components/FormWithToast';
 
@@ -45,7 +46,7 @@ export default async function ClientesPage() {
       <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100/80">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Clientes Destacados</h1>
         <p className="text-gray-500 text-lg">
-          Agrega o elimina los clientes que se muestran en el sitio web.
+          Agrega, edita o elimina los clientes que se muestran en el sitio web.
         </p>
       </div>
 
@@ -54,34 +55,33 @@ export default async function ClientesPage() {
           <span className="w-8 h-8 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center font-black pb-1">+</span>
           Añadir Nuevo Cliente
         </h2>
-        <FormWithToast 
-          action={createClient} 
+        <FormWithToast
+          action={createClient}
           successMessage="Cliente añadido con éxito"
-          className="flex flex-col sm:flex-row gap-4 items-start sm:items-center"
+          className="flex flex-col gap-3"
         >
-          <input
-            type="text"
-            name="name"
-            placeholder="Nombre del cliente (ej. Palnorte)"
-            required
-            className="w-full sm:flex-1 rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all font-medium"
-          />
-          <div className="w-full sm:flex-1">
+          <div className="flex flex-col sm:flex-row gap-4 items-stretch">
+            <input
+              type="text"
+              name="name"
+              placeholder="Nombre del cliente (ej. Palnorte)"
+              required
+              className="flex-1 rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all font-medium"
+            />
             <input
               type="file"
               name="logoFile"
               accept="image/*"
-              className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all text-sm mb-1 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100"
+              className="flex-1 rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all text-sm file:mr-4 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100"
             />
-            <p className="text-xs text-gray-500 pl-2">Recomendado: 400x400px o cuadrado (PNG transparente)</p>
+            <button
+              type="submit"
+              className="sm:w-auto rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-medium px-8 py-3 transition-colors shadow-sm hover:shadow-md whitespace-nowrap disabled:opacity-50"
+            >
+              Añadir Cliente
+            </button>
           </div>
-
-          <button
-            type="submit"
-            className="w-full sm:w-auto rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-medium px-8 py-3 transition-colors shadow-sm hover:shadow-md whitespace-nowrap disabled:opacity-50"
-          >
-            Añadir Cliente
-          </button>
+          <p className="text-xs text-gray-400 pl-1">Logo recomendado: 400×200px, fondo transparente (PNG / SVG / WEBP)</p>
         </FormWithToast>
       </div>
 
@@ -125,21 +125,29 @@ export default async function ClientesPage() {
                 <span className="font-semibold text-gray-800 text-sm leading-tight text-center">{c.name}</span>
               </div>
 
-              {/* Delete Button (appears on hover) */}
-              <FormWithToast 
-                action={deleteClient} 
-                successMessage="Cliente eliminado correctamente"
-                resetOnSuccess={false}
-                className="absolute inset-x-0 bottom-0 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
-              >
-                <input type="hidden" name="id" value={c.id} />
-                <button
-                  type="submit"
-                  className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-3 rounded-b-2xl transition-colors text-sm disabled:opacity-50"
+              {/* Action buttons (appear on hover) */}
+              <div className="absolute inset-x-0 bottom-0 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 flex">
+                <Link
+                  href={`/admin/clientes/${c.id}`}
+                  className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 rounded-bl-2xl transition-colors text-sm text-center"
                 >
-                  Eliminar
-                </button>
-              </FormWithToast>
+                  Editar
+                </Link>
+                <FormWithToast
+                  action={deleteClient}
+                  successMessage="Cliente eliminado correctamente"
+                  resetOnSuccess={false}
+                  className="flex-1"
+                >
+                  <input type="hidden" name="id" value={c.id} />
+                  <button
+                    type="submit"
+                    className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-3 rounded-br-2xl transition-colors text-sm disabled:opacity-50"
+                  >
+                    Eliminar
+                  </button>
+                </FormWithToast>
+              </div>
             </div>
           ))}
         </div>
