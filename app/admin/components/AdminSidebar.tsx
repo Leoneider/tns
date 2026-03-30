@@ -9,7 +9,8 @@ import {
   Newspaper, 
   Users,
   Truck,
-  Image as ImageIcon
+  Image as ImageIcon,
+  ScrollText,
 } from 'lucide-react';
 
 const navItems = [
@@ -19,6 +20,7 @@ const navItems = [
   { href: '/admin/proyectos-sociales', label: 'Proyectos Sociales', icon: ImageIcon },
   { href: '/admin/cifras', label: 'Cifras CSR', icon: BarChart3 },
   { href: '/admin/clientes', label: 'Clientes Destacados', icon: Users },
+  { href: '/admin/politicas', label: 'Políticas', icon: ScrollText },
 ];
 
 export default function AdminSidebar() {
