@@ -1,12 +1,16 @@
+import Image from 'next/image';
+
 export const AboutSection = () => (
   <section className="py-24">
     <div className="max-w-7xl mx-auto px-6">
       <div className="grid lg:grid-cols-2 gap-20 items-center">
         <div className="relative">
-          <img 
+          <Image 
             src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=1000" 
             className="w-full aspect-square object-cover grayscale rounded-sm"
             alt="Office"
+            width={1000}
+            height={1000}
             referrerPolicy="no-referrer"
           />
           <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-surface-low -z-10" />

@@ -58,7 +58,7 @@ export default async function TextosPage() {
       <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100/80">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Textos - Sección Nosotros</h1>
         <p className="text-gray-500 text-lg">
-          Modifica los textos principales de la sección "Nosotros" (Historia, Misión, Visión).
+          Modifica los textos principales de la sección &quot;Nosotros&quot; (Historia, Misión, Visión).
         </p>
       </div>
 

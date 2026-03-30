@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type NewsItem = {
   id: string;
@@ -73,9 +74,10 @@ export const NewsSection = () => {
                 >
                   <div className="aspect-[4/3] w-full overflow-hidden rounded-md mb-6 bg-surface-low relative">
                     {isImageValid ? (
-                      <img
+                      <Image
                         src={item.imageUrl as string}
                         alt={item.title}
+                        fill
                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
                       />
                     ) : (

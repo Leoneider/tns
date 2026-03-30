@@ -3,14 +3,16 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const Hero = ({ onAction }: { onAction?: any }) => (
   <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
     <div className="absolute inset-0 z-0">
-      <img 
+      <Image 
         src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=2000" 
         className="w-full h-full object-cover grayscale opacity-20"
         alt="Logistics background"
+        fill
         referrerPolicy="no-referrer"
       />
       <div className="absolute inset-0 bg-gradient-to-tr from-white via-white/80 to-transparent" />
@@ -52,10 +54,11 @@ export const Hero = ({ onAction }: { onAction?: any }) => (
         className="relative hidden lg:block"
       >
         <div className="aspect-[4/5] bg-primary overflow-hidden rounded-sm relative group">
-          <img 
+          <Image 
             src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1000" 
             className="w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700"
             alt="Truck"
+            fill
             referrerPolicy="no-referrer"
           />
           <div className="absolute bottom-0 left-0 p-8 text-white">
