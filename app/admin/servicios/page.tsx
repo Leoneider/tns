@@ -164,7 +164,19 @@ export default async function ServiciosAdminPage() {
               />
               <p className="text-xs text-gray-500 pl-2">Tamaño recomendado: 800x600 px o superior (Horizontal). Se usa en Carga Líquida y Carga Seca.</p>
               {(service as any).imageUrl && (
-                <p className="text-xs text-green-600 pl-2 mt-2">Ya existe una imagen cargada. Subir una nueva la reemplazará.</p>
+                <div className="mt-4 border border-gray-100 rounded-xl p-4 bg-gray-50/50 flex gap-4 items-center">
+                  <div className="relative w-32 h-20 rounded-lg overflow-hidden border border-gray-200 bg-white flex-shrink-0">
+                    <img 
+                      src={(service as any).imageUrl} 
+                      alt="Vista previa" 
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700">Imagen actual publicada</p>
+                    <p className="text-xs text-green-600 mt-1">Si seleccionas un archivo nuevo arriba, esta imagen se reemplazará.</p>
+                  </div>
+                </div>
               )}
             </div>
 
