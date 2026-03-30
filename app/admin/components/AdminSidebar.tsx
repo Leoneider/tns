@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 
 const navItems = [
-  { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/servicios', label: 'Servicios', icon: Truck },
   { href: '/admin/textos', label: 'Textos Generales', icon: FileText },
   { href: '/admin/noticias', label: 'Gestión de Noticias', icon: Newspaper },
