@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import AdminSidebar from './components/AdminSidebar';
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: 'Panel Administrativo | TNS',
@@ -27,8 +28,11 @@ export default function AdminLayout({
         </header>
 
         {/* Dynamic Content Route */}
-        <main className="flex-1 p-6 md:p-10 overflow-auto w-full max-w-7xl mx-auto">
-          {children}
+        <main className="flex-1 p-6 md:p-10 overflow-auto w-full max-w-7xl mx-auto flex flex-col items-center">
+          <Toaster position="top-center" richColors />
+          <div className="w-full">
+            {children}
+          </div>
         </main>
       </div>
     </div>

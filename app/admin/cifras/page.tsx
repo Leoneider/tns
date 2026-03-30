@@ -1,5 +1,6 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import FormWithToast from '../components/FormWithToast';
 
 export const dynamic = 'force-dynamic';
 
@@ -46,7 +47,13 @@ export default async function CifrasPage() {
 
         <div className="flex flex-col gap-6">
           {csrStats.map((s) => (
-            <form key={s.id} action={updateCSRStat} className="relative group p-6 rounded-2xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:border-purple-100 hover:shadow-md transition-all">
+            <FormWithToast 
+              key={s.id} 
+              action={updateCSRStat} 
+              successMessage="Cifra actualizada correctamente" 
+              resetOnSuccess={false}
+              className="relative group p-6 rounded-2xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:border-purple-100 hover:shadow-md transition-all"
+            >
               <input type="hidden" name="id" value={s.id} />
               
               <div className="flex flex-col md:flex-row gap-5 items-end justify-between">
@@ -79,13 +86,13 @@ export default async function CifrasPage() {
                 <div className="w-full md:w-auto mt-4 md:mt-0">
                   <button 
                     type="submit" 
-                    className="w-full md:w-auto bg-gray-900 hover:bg-black text-white px-6 py-3 rounded-xl transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 font-medium"
+                    className="w-full md:w-auto bg-gray-900 hover:bg-black text-white px-6 py-3 rounded-xl transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 font-medium disabled:opacity-50"
                   >
                     Guardar
                   </button>
                 </div>
               </div>
-            </form>
+            </FormWithToast>
           ))}
         </div>
       </div>

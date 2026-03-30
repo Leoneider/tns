@@ -2,6 +2,7 @@ import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import Image from 'next/image';
 import { uploadImageToSupabase } from '@/lib/supabase-storage';
+import FormWithToast from '../components/FormWithToast';
 
 async function createClient(formData: FormData) {
   'use server';
@@ -48,12 +49,16 @@ export default async function ClientesPage() {
         </p>
       </div>
 
-      <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100/80">
+      <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100/80 mt-8">
         <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
           <span className="w-8 h-8 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center font-black pb-1">+</span>
           Añadir Nuevo Cliente
         </h2>
-        <form action={createClient} className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+        <FormWithToast 
+          action={createClient} 
+          successMessage="Cliente añadido con éxito"
+          className="flex flex-col sm:flex-row gap-4 items-start sm:items-center"
+        >
           <input
             type="text"
             name="name"
@@ -73,11 +78,11 @@ export default async function ClientesPage() {
 
           <button
             type="submit"
-            className="w-full sm:w-auto rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-medium px-8 py-3 transition-colors shadow-sm hover:shadow-md whitespace-nowrap"
+            className="w-full sm:w-auto rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-medium px-8 py-3 transition-colors shadow-sm hover:shadow-md whitespace-nowrap disabled:opacity-50"
           >
             Añadir Cliente
           </button>
-        </form>
+        </FormWithToast>
       </div>
 
       <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100/80">
@@ -121,15 +126,20 @@ export default async function ClientesPage() {
               </div>
 
               {/* Delete Button (appears on hover) */}
-              <form action={deleteClient} className="absolute inset-x-0 bottom-0 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+              <FormWithToast 
+                action={deleteClient} 
+                successMessage="Cliente eliminado correctamente"
+                resetOnSuccess={false}
+                className="absolute inset-x-0 bottom-0 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
+              >
                 <input type="hidden" name="id" value={c.id} />
                 <button
                   type="submit"
-                  className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-3 rounded-b-2xl transition-colors text-sm"
+                  className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-3 rounded-b-2xl transition-colors text-sm disabled:opacity-50"
                 >
                   Eliminar
                 </button>
-              </form>
+              </FormWithToast>
             </div>
           ))}
         </div>

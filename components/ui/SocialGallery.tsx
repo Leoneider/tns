@@ -47,9 +47,9 @@ export function SocialGallery({ projects }: { projects: Project[] }) {
                />
                <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
             </div>
-            <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
+            <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-10 group-hover:translate-y-0 transition-transform duration-500">
               <h3 className="text-2xl font-bold text-white mb-2 tracking-tight drop-shadow-md">{p.title}</h3>
-              <p className="text-white/80 text-sm line-clamp-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 drop-shadow-sm h-10">
+              <p className="text-white/80 text-sm line-clamp-4 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 drop-shadow-sm min-h-[6rem]">
                 {p.description}
               </p>
             </div>

@@ -1,6 +1,7 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { uploadImageToSupabase } from '@/lib/supabase-storage';
+import FormWithToast from '../components/FormWithToast';
 
 const CATEGORIES = [
   { value: 'LIQUID', label: 'Carga Líquida' },
@@ -67,9 +68,11 @@ export default async function ServiciosAdminPage() {
       {/* Services Edit Forms */}
       <div className="space-y-6">
         {services.map((service) => (
-          <form
+          <FormWithToast
             key={service.id}
             action={updateService}
+            successMessage="Servicio actualizado correctamente"
+            resetOnSuccess={false}
             className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100/80 relative overflow-hidden focus-within:ring-2 focus-within:ring-red-500/20"
           >
             {/* Indicador visual de categoría */}
@@ -185,12 +188,12 @@ export default async function ServiciosAdminPage() {
             <div className="flex justify-end border-t border-gray-100 pt-6">
               <button
                 type="submit"
-                className="rounded-xl bg-gray-900 hover:bg-black text-white font-medium px-8 py-2.5 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                className="rounded-xl bg-gray-900 hover:bg-black text-white font-medium px-8 py-2.5 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 disabled:opacity-50"
               >
                 Guardar Cambios
               </button>
             </div>
-          </form>
+          </FormWithToast>
         ))}
       </div>
       

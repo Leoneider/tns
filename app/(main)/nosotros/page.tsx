@@ -1,9 +1,27 @@
+import prisma from '@/lib/prisma';
+
 export const metadata = {
   title: 'Nosotros | TNS',
   description: 'Nuestra Historia - Compromiso en cada kilómetro.',
 };
 
-export default function Nosotros() {
+export default async function Nosotros() {
+  const contents = await prisma.pageContent.findMany({
+    where: { 
+      key: { in: ['nosotros_historia_1', 'nosotros_historia_2', 'nosotros_mision', 'nosotros_vision'] } 
+    }
+  });
+
+  const contentMap = contents.reduce((acc, current) => {
+    acc[current.key] = current.value;
+    return acc;
+  }, {} as Record<string, string>);
+
+  const historia1 = contentMap['nosotros_historia_1'] || 'Somos una empresa regionalista, fundada en el año 2014 por un grupo de empresarios visionarios del sector transporte en el departamento. Nuestro propósito inicial fue consolidar una red logística que no solo movilizara carga, sino que impulsara el desarrollo económico de Norte de Santander.';
+  const historia2 = contentMap['nosotros_historia_2'] || 'A lo largo de una década, TNS ha evolucionado integrando tecnología de vanguardia y procesos de seguridad rigurosos, convirtiéndonos en el referente de confiabilidad para la industria nacional e internacional que transita por nuestras rutas.';
+  const mision = contentMap['nosotros_mision'] || 'Transportadores de Norte de Santander S.A.S. brinda servicios de transporte terrestre de carga integral, superando las expectativas de nuestros aliados estratégicos mediante la excelencia operativa, la seguridad en la cadena de suministro y un equipo humano altamente calificado.';
+  const vision = contentMap['nosotros_vision'] || 'Para el año 2030, TNS se proyecta como la empresa líder en soluciones logísticas del nororiente colombiano, reconocida por su innovación digital, sostenibilidad ambiental y por ser el motor principal de la competitividad regional en el comercio exterior.';
+
   return (
     <main className="bg-white text-primary">
       {/* Hero Section: Editorial Style */}
@@ -35,11 +53,11 @@ export default function Nosotros() {
               <h2 className="editorial-h2 border-l-4 border-secondary pl-6 leading-none">Trayectoria Institucional</h2>
             </div>
             <div className="w-full md:w-2/3 space-y-6">
-              <p className="text-lg leading-relaxed text-primary/80 font-medium">
-                Somos una empresa regionalista, fundada en el año 2014 por un grupo de empresarios visionarios del sector transporte en el departamento. Nuestro propósito inicial fue consolidar una red logística que no solo movilizara carga, sino que impulsara el desarrollo económico de Norte de Santander.
+              <p className="text-lg leading-relaxed text-primary/80 font-medium whitespace-pre-line">
+                {historia1}
               </p>
-              <p className="text-lg leading-relaxed text-primary/70">
-                A lo largo de una década, TNS ha evolucionado integrando tecnología de vanguardia y procesos de seguridad rigurosos, convirtiéndonos en el referente de confiabilidad para la industria nacional e internacional que transita por nuestras rutas.
+              <p className="text-lg leading-relaxed text-primary/70 whitespace-pre-line">
+                {historia2}
               </p>
             </div>
           </div>
@@ -56,8 +74,8 @@ export default function Nosotros() {
                 <span className="material-symbols-outlined text-secondary text-4xl" data-icon="track_changes">track_changes</span>
                 <h3 className="editorial-h2 text-2xl uppercase tracking-tight">Misión</h3>
               </div>
-              <p className="text-lg leading-relaxed text-primary/70 font-medium">
-                Transportadores de Norte de Santander S.A.S. brinda servicios de transporte terrestre de carga integral, superando las expectativas de nuestros aliados estratégicos mediante la excelencia operativa, la seguridad en la cadena de suministro y un equipo humano altamente calificado.
+              <p className="text-lg leading-relaxed text-primary/70 font-medium whitespace-pre-line">
+                {mision}
               </p>
             </div>
             {/* Visión */}
@@ -66,8 +84,8 @@ export default function Nosotros() {
                 <span className="material-symbols-outlined text-secondary text-4xl" data-icon="visibility">visibility</span>
                 <h3 className="editorial-h2 text-2xl uppercase tracking-tight">Visión</h3>
               </div>
-              <p className="text-lg leading-relaxed text-primary/70 font-medium">
-                Para el año 2030, TNS se proyecta como la empresa líder en soluciones logísticas del nororiente colombiano, reconocida por su innovación digital, sostenibilidad ambiental y por ser el motor principal de la competitividad regional en el comercio exterior.
+              <p className="text-lg leading-relaxed text-primary/70 font-medium whitespace-pre-line">
+                {vision}
               </p>
             </div>
           </div>
@@ -75,30 +93,58 @@ export default function Nosotros() {
       </section>
 
       {/* Section: Valores */}
-      <section className="py-24 bg-primary text-white">
-        <div className="max-w-7xl mx-auto px-6 text-center lg:text-left">
-          <h2 className="editorial-h2 mb-16 text-white uppercase tracking-tight text-center">Nuestros Valores</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 text-center">
+      <section className="py-24 bg-primary text-white relative overflow-hidden">
+        {/* Background Accents */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center max-w-2xl mx-auto mb-20">
+            <span className="label-technical text-secondary mb-4 block">Principios Corporativos</span>
+            <h2 className="editorial-h2 text-white uppercase tracking-tight">Nuestros Valores</h2>
+            <p className="mt-4 text-white/60 text-lg">
+              Los pilares fundamentales que guían cada kilómetro que recorremos y cada decisión que tomamos.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { num: '01', title: 'Seguridad', desc: 'Protegemos cada entrega con rigurosos estándares operativos y monitoreo constante.' },
-              { num: '02', title: 'Calidad', desc: 'Garantizamos eficiencia y precisión en absolutamente toda nuestra cadena logística.' },
-              { num: '03', title: 'Servicio', desc: 'Brindamos atención personalizada y soluciones ágiles a todos nuestros aliados.' },
-              { num: '04', title: 'Ética', desc: 'Actuamos con máxima transparencia, honestidad y rectitud empresarial e institucional.' },
-              { num: '05', title: 'Respeto', desc: 'Valoramos profundamente a nuestro gran equipo, a los clientes y al entorno social.' },
-              { num: '06', title: 'Calidez', desc: 'Fomentamos sólidas relaciones cercanas y amigables en cada interacción comercial.' },
-            ].map((v) => (
-              <div key={v.num} className="group h-56 lg:h-64 [perspective:1000px] cursor-pointer">
-                <div className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                  {/* Frente */}
-                  <div className="absolute inset-0 bg-white/5 border border-white/10 rounded-sm p-8 flex flex-col justify-center items-center lg:items-start text-center lg:text-left [backface-visibility:hidden]">
-                    <div className="text-secondary text-5xl font-black mb-4">{v.num}</div>
-                    <h4 className="text-2xl font-bold">{v.title}</h4>
+              { title: 'Seguridad', desc: 'Protegemos cada entrega con rigurosos estándares operativos y monitoreo constante.', icon: 'security', img: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&q=80&w=800' },
+              { title: 'Calidad', desc: 'Garantizamos eficiencia y precisión en absolutamente toda nuestra cadena logística.', icon: 'workspace_premium', img: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80&w=800' },
+              { title: 'Servicio', desc: 'Brindamos atención personalizada y soluciones ágiles a todos nuestros aliados.', icon: 'support_agent', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800' },
+              { title: 'Ética', desc: 'Actuamos con máxima transparencia, honestidad y rectitud empresarial e institucional.', icon: 'balance', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800' },
+              { title: 'Respeto', desc: 'Valoramos profundamente a nuestro gran equipo, a los clientes y al entorno social.', icon: 'diversity_3', img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800' },
+              { title: 'Calidez', desc: 'Fomentamos sólidas relaciones cercanas y amigables en cada interacción comercial.', icon: 'volunteer_activism', img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800' },
+            ].map((v, i) => (
+              <div 
+                key={i} 
+                className="group relative rounded-2xl overflow-hidden hover:-translate-y-2 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-secondary/20 transition-all duration-500 min-h-[360px] border border-white/10"
+              >
+                {/* Background Image */}
+                <img 
+                  src={v.img} 
+                  alt={v.title} 
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 z-0" 
+                />
+                
+                {/* Dark Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/70 to-black/95 group-hover:from-black/40 group-hover:via-black/80 group-hover:to-secondary/90 transition-colors duration-500 z-0"></div>
+                
+                {/* Content */}
+                <div className="relative z-10 p-8 flex flex-col h-full justify-end">
+                  <div className="w-14 h-14 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white mb-6 group-hover:bg-white group-hover:text-secondary group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 shadow-lg">
+                    <span className="material-symbols-outlined text-3xl">{v.icon}</span>
                   </div>
-                  {/* Dorso (Hover) */}
-                  <div className="absolute inset-0 bg-secondary border border-secondary rounded-sm p-8 flex items-center justify-center text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                    <p className="text-white text-base lg:text-lg font-medium leading-relaxed drop-shadow-sm">{v.desc}</p>
-                  </div>
+                  
+                  <h3 className="text-2xl font-bold mb-3 text-white group-hover:translate-x-2 transition-transform duration-500">{v.title}</h3>
+                  
+                  <p className="text-white/70 leading-relaxed text-base group-hover:text-white/95 group-hover:translate-x-2 transition-all duration-500 delay-75">
+                    {v.desc}
+                  </p>
                 </div>
+                
+                {/* Bottom Accent Line */}
+                <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-secondary to-red-500 group-hover:w-full transition-all duration-700 ease-out z-20"></div>
               </div>
             ))}
           </div>
