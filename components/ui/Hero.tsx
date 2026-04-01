@@ -69,7 +69,7 @@ export const Hero = ({ onAction }: { onAction?: any }) => (
           </div>
         </div>
         {/* Floating element */}
-        <div className="absolute -top-10 -right-10 bg-secondary p-8 text-white rounded-sm shadow-2xl hidden xl:block">
+        <div className="absolute top-6 -right-10 bg-secondary p-8 text-white rounded-sm shadow-2xl hidden xl:block">
           <div className="text-4xl font-black mb-1">+150</div>
           <div className="text-xs uppercase tracking-widest font-bold">Vehículos en Flota</div>
         </div>
