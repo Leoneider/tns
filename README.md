@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Proyecto TNS
 
-## Getting Started
+Este es un proyecto construido con [Next.js](https://nextjs.org/) y utiliza [Prisma](https://www.prisma.io/) como ORM para conectarse a una base de datos PostgreSQL (alojada en Supabase).
 
-First, run the development server:
+## Requisitos Previos
+
+- [Node.js](https://nodejs.org/) (versión recomendada)
+- Una base de datos PostgreSQL (por ejemplo, a través de Supabase)
+
+## Configuración Inicial
+
+### 1. Variables de Entorno
+
+Para que el proyecto funcione correctamente, es **obligatorio** configurar las variables de entorno. Crea un archivo llamado `.env` en la raíz del proyecto y agrega la siguiente estructura con tus credenciales:
+
+```env
+# Variables de Supabase
+NEXT_PUBLIC_DATABASE_SUPABASE_ANON_KEY="tu_anon_key"
+NEXT_PUBLIC_DATABASE_SUPABASE_PUBLISHABLE_KEY="tu_publishable_key"
+DATABASE_SUPABASE_URL="tu_supabase_url"
+
+# Credenciales de base de datos Postgres
+DATABASE_POSTGRES_DATABASE="postgres"
+DATABASE_POSTGRES_HOST="tu_host"
+DATABASE_POSTGRES_USER="postgres"
+DATABASE_POSTGRES_PASSWORD="tu_password"
+
+# Variables de conexión para Prisma (¡Muy importantes!)
+# Se utilizan para el Pooler de conexiones (pgbouncer) y conexión directa
+DATABASE_POSTGRES_PRISMA_URL="postgres://usuario:password@host:6543/postgres?sslmode=require&pgbouncer=true"
+DATABASE_POSTGRES_URL="postgres://usuario:password@host:6543/postgres?sslmode=require&supa=base-pooler.x"
+DATABASE_POSTGRES_URL_NON_POOLING="postgres://usuario:password@host:5432/postgres?sslmode=require"
+
+# Llaves secretas de Supabase (Auth / Service Role)
+DATABASE_SUPABASE_JWT_SECRET="tu_jwt_secret"
+DATABASE_SUPABASE_SECRET_KEY="tu_secret_key"
+DATABASE_SUPABASE_SERVICE_ROLE_KEY="tu_service_role_key"
+```
+
+Asegúrate de reemplazar los valores de las variables (especialmente `DATABASE_POSTGRES_PRISMA_URL` y `DATABASE_POSTGRES_URL_NON_POOLING`) con los proporcionados por el panel de tu base de datos en Supabase para que Prisma pueda establecer la conexión exitosamente.
+
+### 2. Instalación de Dependencias
+
+Instala los paquetes necesarios del proyecto ejecutando:
+
+```bash
+npm install
+```
+
+### 3. Configuración de Prisma
+
+Dado que el proyecto utiliza Prisma, después de configurar tus variables de entorno necesitas sincronizar y generar el cliente de Prisma basado en el archivo `prisma/schema.prisma`.
+
+Para generar el cliente de Prisma de forma local ejecuta:
+
+```bash
+npx prisma generate
+```
+
+Si es la primera vez que configuras la base de datos o si necesitas crear las tablas en tu base de datos remota basándote en el esquema actual de Prisma, ejecuta:
+
+```bash
+npx prisma db push
+```
+
+*(Nota: si en el futuro se manejan historiales de migraciones, podrías usar `npx prisma migrate dev` en lugar de `db push`).*
+
+Opcionalmente, si el proyecto cuenta con un script para poblar la base de datos con datos iniciales (Seed), puedes correr:
+
+```bash
+npx prisma db seed
+```
+
+### 4. Iniciar el Servidor de Desarrollo
+
+Una vez configuradas las variables de entorno y preparado Prisma, ya puedes arrancar la aplicación en modo desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación corriendo.
