@@ -75,3 +75,9 @@ model Policy {
   order       Int      @default(0)
   createdAt   DateTime @default(now())
 }
+
+model AdminUser {
+  id       String @id @default(cuid())
+  username String @unique
+  password String
+}

@@ -66,7 +66,7 @@ export default async function ServiciosAdminPage() {
       </div>
 
       {/* Services Edit Forms */}
-      <div className="space-y-6">
+      <div className="flex flex-col gap-6">
         {services.map((service) => (
           <FormWithToast
             key={service.id}

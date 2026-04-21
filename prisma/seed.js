@@ -256,6 +256,28 @@ async function main() {
   });
 
   console.log('✅ Social Projects seeded successfully!');
+
+  // --- ADMIN USER ---
+  const bcrypt = require('bcryptjs');
+  
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  
+  if (!adminPassword) {
+    console.warn('⚠️ La variable de entorno ADMIN_PASSWORD no está definida. Saltando la creación del usuario admin...');
+  } else {
+    await prisma.adminUser.deleteMany();
+    
+    const hashedPassword = await bcrypt.hash(adminPassword, 10);
+    
+    await prisma.adminUser.create({
+      data: {
+        username: 'admin',
+        password: hashedPassword,
+      },
+    });
+    
+    console.log('✅ Admin User seeded successfully!');
+  }
 }
 
 main()

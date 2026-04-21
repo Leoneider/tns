@@ -57,13 +57,22 @@ export default function AdminSidebar() {
         })}
       </nav>
 
-      <div className="p-4 border-t border-gray-100/50">
+      <div className="p-4 border-t border-gray-100/50 flex flex-col gap-2">
         <Link 
           href="/" 
           className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
         >
           Volver al sitio
         </Link>
+        <button 
+          onClick={async () => {
+            await fetch('/api/auth/logout', { method: 'POST' });
+            window.location.href = '/admin/login';
+          }}
+          className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
+        >
+          Cerrar sesión
+        </button>
       </div>
     </aside>
   );
