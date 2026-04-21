@@ -10,11 +10,13 @@ export const metadata = {
 };
 
 export default function Home() {
+  const showTrackingSection = process.env.SHOW_TRACKING_SECTION === 'true';
+
   return (
     <>
       <Hero />
       <ServicesGrid />
-      <TrackingSection />
+      {showTrackingSection && <TrackingSection />}
       <AboutSection />
       <ContactForm />
     </>
