@@ -116,30 +116,6 @@ async function main() {
         websiteUrl: 'https://www.terpel.com',
         order: 2,
       },
-      // {
-      //   name: 'Palnorte',
-      //   logoUrl: 'https://ui-avatars.com/api/?name=Palnorte&background=4CAF50&color=fff&size=300&font-size=0.33',
-      //   websiteUrl: 'https://palnortesas.com.co',
-      //   order: 3,
-      // },
-      // {
-      //   name: 'Oleologistic',
-      //   logoUrl: 'https://ui-avatars.com/api/?name=Oleologistic&background=F57C00&color=fff&size=300&font-size=0.33',
-      //   websiteUrl: '',
-      //   order: 4,
-      // },
-      // {
-      //   name: 'Oleonorte',
-      //   logoUrl: 'https://ui-avatars.com/api/?name=Oleonorte&background=00796B&color=fff&size=300&font-size=0.33',
-      //   websiteUrl: '',
-      //   order: 5,
-      // },
-      // {
-      //   name: 'Madeiros',
-      //   logoUrl: 'https://ui-avatars.com/api/?name=Madeiros&background=7B1FA2&color=fff&size=300&font-size=0.33',
-      //   websiteUrl: '',
-      //   order: 6,
-      // },
       {
         name: 'Cooperativa de Caficultores del Catatumbo',
         logoUrl: 'https://pwxvctdmbiuhvswfsjln.supabase.co/storage/v1/object/public/tns-images/clientes/coopercafe.png',
