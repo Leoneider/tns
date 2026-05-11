@@ -73,7 +73,7 @@ export default async function NoticiasPage() {
                 accept="image/*"
                 className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-sm mb-1 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
               />
-              <p className="text-xs text-gray-500 pl-2">Tamaño recomendado: 800x600 px o superior (Horizontal)</p>
+              <p className="text-xs text-gray-500 pl-2">Tamaño recomendado: 800x600 px o superior • Máximo 5MB</p>
             </div>
           </div>
           <textarea 

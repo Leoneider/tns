@@ -107,7 +107,7 @@ export default async function EditClientPage({ params }: { params: { id: string 
               accept="image/*"
               className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all text-sm mb-1 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100"
             />
-            <p className="text-xs text-gray-500 pl-2 mt-1">Recomendado: 400×200px, fondo transparente (PNG/SVG/WEBP)</p>
+            <p className="text-xs text-gray-500 pl-2 mt-1">Recomendado: 400×200px • Máximo 5MB</p>
 
             {/* Logo preview */}
             {client.logoUrl && (

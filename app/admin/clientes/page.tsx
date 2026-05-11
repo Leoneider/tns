@@ -81,7 +81,7 @@ export default async function ClientesPage() {
               Añadir Cliente
             </button>
           </div>
-          <p className="text-xs text-gray-400 pl-1">Logo recomendado: 400×200px, fondo transparente (PNG / SVG / WEBP)</p>
+          <p className="text-xs text-gray-400 pl-1">Logo recomendado: 400×200px • Máximo 5MB</p>
         </FormWithToast>
       </div>
 

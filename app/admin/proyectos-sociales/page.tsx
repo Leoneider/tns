@@ -72,7 +72,7 @@ export default async function SocialProjectsAdmin() {
                 required
                 className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all text-sm mb-1 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
               />
-              <p className="text-xs text-gray-500 pl-2">Tamaño recomendado: 800x600 px o superior (Horizontal)</p>
+              <p className="text-xs text-gray-500 pl-2">Tamaño recomendado: 800x600 px o superior • Máximo 5MB</p>
             </div>
           </div>
           <div>

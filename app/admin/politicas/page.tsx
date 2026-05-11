@@ -94,7 +94,7 @@ export default async function PoliticasAdminPage() {
               required
               className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
             />
-            <p className="text-xs text-gray-400 mt-1 pl-2">Solo archivos PDF</p>
+            <p className="text-xs text-gray-400 mt-1 pl-2">Solo archivos PDF • Máximo 5MB</p>
           </div>
           <div className="flex">
             <button

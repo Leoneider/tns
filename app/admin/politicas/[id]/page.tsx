@@ -105,6 +105,7 @@ export default async function EditPolicyPage({ params }: { params: { id: string 
               accept="application/pdf"
               className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
             />
+            <p className="text-xs text-gray-500 pl-2 mt-1">Solo archivos PDF • Máximo 5MB</p>
             {policy.pdfUrl && (
               <div className="mt-3 border border-gray-100 rounded-xl p-4 bg-gray-50/50 flex gap-4 items-center">
                 <div className="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0">
