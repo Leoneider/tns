@@ -23,6 +23,7 @@ async function createProject(formData: FormData) {
     data: {
       title: formData.get('title') as string,
       description: formData.get('description') as string,
+      content: (formData.get('content') as string) || "",
       imageUrl: imageUrl,
       order: 0,
     }
@@ -81,10 +82,20 @@ export default async function SocialProjectsAdmin() {
               placeholder="Breve descripción del impacto... (Máx. 132 caracteres)" 
               required 
               maxLength={132}
-              rows={4}
+              rows={2}
               className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all resize-y"
             ></textarea>
-            <p className="text-xs text-gray-500 pl-2 mt-1">Límite: 132 caracteres para garantizar una correcta visualización en la galería.</p>
+            <p className="text-xs text-gray-500 pl-2 mt-1">Límite: 132 caracteres para garantizar una correcta visualización en la galería. Será el resumen de la donación.</p>
+          </div>
+          <div>
+            <textarea 
+              name="content" 
+              placeholder="Escribe la historia completa de la donación o proyecto (puedes usar párrafos largos)..." 
+              required 
+              rows={6}
+              className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all resize-y"
+            ></textarea>
+            <p className="text-xs text-gray-500 pl-2 mt-1">Este texto se mostrará en la página de detalle del proyecto.</p>
           </div>
           <div className="flex">
             <button 

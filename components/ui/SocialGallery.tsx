@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Project {
@@ -36,7 +37,7 @@ export function SocialGallery({ projects }: { projects: Project[] }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-12">
         {paginatedProjects.map((p) => (
-          <div key={p.id} className="group relative bg-surface-low rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-primary/5 cursor-pointer">
+          <Link href={`/responsabilidad-social/${p.id}`} key={p.id} className="group relative bg-surface-low rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-primary/5 cursor-pointer block">
             <div className="relative w-full h-80 overflow-hidden">
                <Image 
                  src={p.imageUrl} 
@@ -49,11 +50,15 @@ export function SocialGallery({ projects }: { projects: Project[] }) {
             </div>
             <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-10 group-hover:translate-y-0 transition-transform duration-500">
               <h3 className="text-2xl font-bold text-white mb-2 tracking-tight drop-shadow-md">{p.title}</h3>
-              <p className="text-white/80 text-sm line-clamp-4 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 drop-shadow-sm min-h-[6rem]">
+              <p className="text-white/80 text-sm line-clamp-3 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 drop-shadow-sm mb-4">
                 {p.description}
               </p>
+              <div className="inline-flex items-center gap-2 text-secondary text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
+                Ver Detalles
+                <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

@@ -33,6 +33,7 @@ export default async function EditSocialProjectPage({ params }: { params: { id: 
     const dataToUpdate: any = {
       title: formData.get('title') as string,
       description: formData.get('description') as string,
+      content: (formData.get('content') as string) || "",
     };
 
     if (imageUrl) {
@@ -83,10 +84,22 @@ export default async function EditSocialProjectPage({ params }: { params: { id: 
               defaultValue={projectItem.description}
               required 
               maxLength={132}
-              rows={6}
+              rows={2}
               className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all resize-y"
             ></textarea>
             <p className="text-xs text-gray-500 pl-2 mt-1">Límite: 132 caracteres para garantizar una correcta visualización en la galería.</p>
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5 pl-1">Historia completa (Contenido)</label>
+            <textarea 
+              name="content" 
+              defaultValue={projectItem.content}
+              required 
+              rows={8}
+              className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all resize-y"
+            ></textarea>
+            <p className="text-xs text-gray-500 pl-2 mt-1">Este texto se mostrará en la página de detalle del proyecto.</p>
           </div>
 
           <div>

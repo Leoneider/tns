@@ -30,38 +30,55 @@ export default async function ResponsabilidadSocial() {
   return (
     <main className="bg-white text-primary antialiased">
       {/* Hero Header */}
-      <section className="relative pt-40 pb-24 overflow-hidden bg-primary px-6">
+      <section className="relative pt-48 pb-32 overflow-hidden bg-primary px-6 border-b-[8px] border-secondary">
         {/* Background Image Overlay */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=2000"
-            className="w-full h-full object-cover grayscale opacity-70 object-center"
-            alt="Apoyo a la Educación y Comunidad"
+            className="w-full h-full object-cover mix-blend-overlay opacity-60 scale-105 animate-slow-pan"
+            alt="Fundación TNS"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-primary/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent" />
         </div>
 
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <span className="label-technical text-white/50 mb-4 block">Compromiso Corporativo</span>
-          <h1 className="kinetic-headline text-white mb-6 tracking-tight">Responsabilidad Social</h1>
-          <p className="text-white/70 max-w-2xl mx-auto mt-4 text-lg leading-relaxed">
-            Nuestro compromiso inquebrantable con las comunidades vulnerables, la educación y el desarrollo sostenible de Norte de Santander.
+        <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-start text-left">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-6 backdrop-blur-sm">
+            <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            <span className="text-secondary font-bold text-xs tracking-widest uppercase">Fundación TNS</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter leading-[1.05] max-w-4xl drop-shadow-lg">
+            Impacto Social que <span className="text-secondary">Transforma Vidas</span>
+          </h1>
+          
+          <p className="text-white/80 max-w-2xl mt-4 text-xl leading-relaxed font-light border-l-4 border-secondary pl-6">
+            A través de nuestra fundación, materializamos nuestro compromiso con las comunidades vulnerables, la educación y el desarrollo sostenible de Norte de Santander.
           </p>
+
+          <div className="mt-12 flex gap-4">
+             <a href="#proyectos" className="px-8 py-4 bg-secondary text-white font-bold rounded-sm uppercase tracking-widest text-sm hover:bg-white hover:text-secondary transition-colors duration-300">
+               Ver Donaciones
+             </a>
+          </div>
         </div>
       </section>
 
       {/* Impact Metrics Section */}
-      <section className="py-24 max-w-7xl mx-auto px-6">
-
-        <div className="text-center mb-12">
-          <p className="text-xl text-primary/80 font-medium">
-            Comunidades en las que se tiene presencia: <span className="font-bold text-secondary">Tibú, Sardinata y San Agustín de los Pozos.</span>
+      <section className="py-24 max-w-7xl mx-auto px-6 relative">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
+        
+        <div className="text-center mb-16">
+          <span className="label-technical text-primary/40 mb-4 block">Nuestro Alcance</span>
+          <p className="text-2xl text-primary/80 font-medium max-w-3xl mx-auto leading-relaxed">
+            Comunidades en las que tenemos presencia activa y continua: <br/>
+            <span className="font-bold text-secondary text-3xl">Tibú, Sardinata y San Agustín de los Pozos.</span>
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row shadow-2xl rounded-sm overflow-hidden border border-primary/5">
+        <div className="flex flex-col md:flex-row shadow-2xl rounded-2xl overflow-hidden border border-primary/5 bg-white">
           {/* Left colored block */}
           <div className="md:w-1/3 bg-secondary text-white py-16 px-10 flex flex-col justify-center items-center text-center">
             <span className="text-sm font-bold uppercase tracking-widest text-white/80 mb-2">Algunas Cifras</span>
@@ -102,7 +119,9 @@ export default async function ResponsabilidadSocial() {
 
       </section>
 
-      <SocialGallery projects={projects} />
+      <div id="proyectos">
+        <SocialGallery projects={projects} />
+      </div>
 
       <ContactForm />
     </main>
