@@ -28,9 +28,9 @@ export function SocialGallery({ projects }: { projects: Project[] }) {
   return (
     <section className="py-24 max-w-7xl mx-auto px-6 border-t border-primary/10 mt-12 bg-white">
       <div className="text-center mb-16">
-        <span className="label-technical text-primary/50 mb-4 block">Nuestras Historias</span>
+        <span className="label-technical text-primary/50 mb-4 block">Fundación TNS • Nuestro Impacto</span>
         <h2 className="editorial-h2 inline-block relative">
-          Galería de Proyectos
+          Historias, Proyectos y Donaciones
           <div className="hidden md:block absolute -bottom-4 left-1/4 right-1/4 h-1 bg-secondary rounded-full opacity-80 decoration"></div>
         </h2>
       </div>
