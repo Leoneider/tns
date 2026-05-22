@@ -13,7 +13,7 @@ export const Navbar = () => {
   const pathname = usePathname();
 
   // Add paths here that feature a dark background header at the very top
-  const isDarkHeaderPage = pathname === '/responsabilidad-social';
+  const isDarkHeaderPage = false; // Removed '/responsabilidad-social' because it now has a light background
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);

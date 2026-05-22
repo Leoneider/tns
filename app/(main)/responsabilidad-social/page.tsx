@@ -29,38 +29,67 @@ export default async function ResponsabilidadSocial() {
   }
   return (
     <main className="bg-white text-primary antialiased">
-      {/* Hero Header */}
-      <section className="relative pt-48 pb-32 overflow-hidden bg-primary px-6 border-b-[8px] border-secondary">
-        {/* Background Image Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=2000"
-            className="w-full h-full object-cover mix-blend-overlay opacity-60 scale-105 animate-slow-pan"
-            alt="Fundación TNS"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent" />
+      {/* Hero Header Rediseñado para Fundación de Niños */}
+      <section className="relative pt-40 pb-32 overflow-hidden bg-sky-50 px-6">
+        {/* Elementos juguetones de fondo */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-yellow-300/30 rounded-full blur-3xl"></div>
+          <div className="absolute top-48 -left-24 w-72 h-72 bg-blue-300/30 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-32 left-1/3 w-80 h-80 bg-pink-300/30 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-start text-left">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-6 backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-            <span className="text-secondary font-bold text-xs tracking-widest uppercase">Fundación TNS</span>
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter leading-[1.05] max-w-4xl drop-shadow-lg">
-            Impacto Social que <span className="text-secondary">Transforma Vidas</span>
-          </h1>
-          
-          <p className="text-white/80 max-w-2xl mt-4 text-xl leading-relaxed font-light border-l-4 border-secondary pl-6">
-            A través de nuestra fundación, materializamos nuestro compromiso con las comunidades vulnerables, la educación y el desarrollo sostenible de Norte de Santander.
-          </p>
+        <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Contenido de Texto */}
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+            <img 
+              src="/fundacion.png" 
+              alt="Logo Fundación TNS" 
+              className="w-64 md:w-80 mb-8 drop-shadow-md hover:scale-105 transition-transform duration-300" 
+            />
+            
+            <h1 className="text-5xl md:text-6xl font-black text-slate-800 mb-6 tracking-tight leading-[1.15] drop-shadow-sm">
+              Construyendo un futuro <span className="text-secondary relative inline-block">
+                lleno de sonrisas
+                <svg className="absolute -bottom-2 left-0 w-full h-3 text-yellow-400 opacity-80" viewBox="0 0 100 20" preserveAspectRatio="none">
+                  <path d="M0,10 Q50,20 100,10" stroke="currentColor" strokeWidth="8" fill="none" strokeLinecap="round" />
+                </svg>
+              </span>
+            </h1>
+            
+            <p className="text-slate-600 max-w-xl mt-6 text-xl leading-relaxed font-medium">
+              A través de nuestra fundación, materializamos nuestro compromiso con los niños, las comunidades vulnerables y la educación en Norte de Santander.
+            </p>
 
-          <div className="mt-12 flex gap-4">
-             <a href="#proyectos" className="px-8 py-4 bg-secondary text-white font-bold rounded-sm uppercase tracking-widest text-sm hover:bg-white hover:text-secondary transition-colors duration-300">
-               Ver Donaciones
-             </a>
+            <div className="mt-10 flex gap-4">
+               <a href="#proyectos" className="px-8 py-4 bg-secondary text-white font-bold rounded-full shadow-lg shadow-secondary/30 uppercase tracking-wide text-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300 flex items-center gap-2 group">
+                 <span>Descubre nuestro impacto</span>
+                 <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">favorite</span>
+               </a>
+            </div>
+          </div>
+
+          {/* Contenedor de Imagen Juguetón */}
+          <div className="relative w-full flex justify-center items-center mt-12 lg:mt-0">
+            <div className="relative w-full max-w-md aspect-square">
+              {/* Formas coloridas de fondo */}
+              <div className="absolute inset-0 bg-yellow-400 rounded-[40px] rotate-6 scale-105 opacity-50"></div>
+              <div className="absolute inset-0 bg-sky-400 rounded-[40px] -rotate-3 scale-105 opacity-50"></div>
+              
+              {/* Imagen Principal */}
+              <img
+                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1000"
+                className="absolute inset-0 w-full h-full object-cover rounded-[40px] border-8 border-white shadow-2xl z-10 hover:rotate-0 transition-transform duration-500"
+                alt="Niños sonriendo - Fundación TNS"
+              />
+              
+              {/* Decoraciones flotantes */}
+              <div className="absolute -top-6 -right-6 w-16 h-16 bg-pink-400 rounded-full shadow-lg flex items-center justify-center text-white z-20">
+                <span className="material-symbols-outlined text-3xl">star</span>
+              </div>
+              <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-white rounded-full shadow-xl border-4 border-sky-100 flex items-center justify-center p-4 z-20">
+                <img src="/fundacion.png" alt="Icono" className="object-contain w-full h-full drop-shadow-sm" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
