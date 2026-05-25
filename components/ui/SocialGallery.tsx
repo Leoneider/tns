@@ -37,7 +37,7 @@ export function SocialGallery({ projects }: { projects: Project[] }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-12">
         {paginatedProjects.map((p) => (
-          <Link href={`/responsabilidad-social/${p.id}`} key={p.id} className="group relative bg-surface-low rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-primary/5 cursor-pointer block">
+          <Link href={`/fundacion/${p.id}`} key={p.id} className="group relative bg-surface-low rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-primary/5 cursor-pointer block">
             <div className="relative w-full h-80 overflow-hidden">
                <Image 
                  src={p.imageUrl} 

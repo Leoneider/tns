@@ -54,7 +54,7 @@ export default async function ProjectDetailPage({ params }: { params: { id: stri
     <main className="pt-24 pb-20 fade-in-up">
       {/* Hero Article Header */}
       <header className="max-w-7xl mx-auto px-6 mb-16">
-        <Link href="/responsabilidad-social#proyectos" className="inline-flex items-center text-sm font-bold text-primary/40 hover:text-secondary transition-colors mb-10 group">
+        <Link href="/fundacion#proyectos" className="inline-flex items-center text-sm font-bold text-primary/40 hover:text-secondary transition-colors mb-10 group">
           <span className="material-symbols-outlined mr-2 text-lg group-hover:-translate-x-1 transition-transform">
             arrow_back
           </span>
@@ -159,7 +159,7 @@ export default async function ProjectDetailPage({ params }: { params: { id: stri
                     year: "numeric"
                   });
                   return (
-                    <Link href={`/responsabilidad-social/${related.id}`} key={related.id} className="group block">
+                    <Link href={`/fundacion/${related.id}`} key={related.id} className="group block">
                       {related.imageUrl ? (
                         <div className="aspect-video w-full overflow-hidden rounded-md mb-4 bg-surface-low relative">
                           <Image

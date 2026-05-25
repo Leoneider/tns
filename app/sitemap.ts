@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: 'https://www.transportadorestns.com/responsabilidad-social',
+      url: 'https://www.transportadorestns.com/fundacion',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.7,

@@ -14,7 +14,7 @@ async function updateCSRStat(formData: FormData) {
     }
   });
   revalidatePath('/admin/cifras');
-  revalidatePath('/responsabilidad-social');
+  revalidatePath('/fundacion');
 }
 
 export default async function CifrasPage() {

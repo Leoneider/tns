@@ -46,7 +46,7 @@ export default async function EditSocialProjectPage({ params }: { params: { id: 
     });
 
     revalidatePath('/admin/proyectos-sociales');
-    revalidatePath('/responsabilidad-social');
+    revalidatePath('/fundacion');
     revalidatePath('/');
     redirect('/admin/proyectos-sociales');
   }

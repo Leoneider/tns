@@ -29,14 +29,14 @@ async function createProject(formData: FormData) {
     }
   });
   revalidatePath('/admin/proyectos-sociales');
-  revalidatePath('/responsabilidad-social');
+  revalidatePath('/fundacion');
 }
 
 async function deleteProject(formData: FormData) {
   'use server';
   await (prisma as any).socialProject.delete({ where: { id: formData.get('id') as string } });
   revalidatePath('/admin/proyectos-sociales');
-  revalidatePath('/responsabilidad-social');
+  revalidatePath('/fundacion');
 }
 
 export default async function SocialProjectsAdmin() {
