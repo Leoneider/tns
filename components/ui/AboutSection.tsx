@@ -30,11 +30,11 @@ export const AboutSection = () => (
           
           <div className="mt-12 grid grid-cols-2 gap-8 border-t border-primary/10 pt-12">
             <div>
-              <div className="text-3xl font-black text-secondary">25+</div>
+              <div className="text-3xl font-black text-secondary">12+</div>
               <div className="text-xs uppercase font-bold tracking-widest mt-1">Años de Trayectoria</div>
             </div>
             <div>
-              <div className="text-3xl font-black text-secondary">500+</div>
+              <div className="text-3xl font-black text-secondary">20+</div>
               <div className="text-xs uppercase font-bold tracking-widest mt-1">Clientes Corporativos</div>
             </div>
           </div>
