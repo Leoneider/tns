@@ -1,9 +1,13 @@
 import { ServicesGrid } from '@/components/ui/ServicesGrid';
 import { ContactForm } from '@/components/ui/ContactForm';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Servicios | TNS',
+export const metadata: Metadata = {
+  title: 'Servicios',
   description: 'Portafolio de servicios de TNS: transporte de carga líquida y seca, recurso humano y tecnológico especializado.',
+  alternates: {
+    canonical: '/servicios',
+  },
 };
 
 export default function Servicios() {

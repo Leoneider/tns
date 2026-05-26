@@ -7,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/'],
     },
+    host: 'https://www.transportadorestns.com',
     sitemap: 'https://www.transportadorestns.com/sitemap.xml',
   }
 }
