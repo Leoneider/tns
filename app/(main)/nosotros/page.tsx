@@ -8,7 +8,20 @@ export const metadata = {
 export default async function Nosotros() {
   const contents = await prisma.pageContent.findMany({
     where: { 
-      key: { in: ['nosotros_historia_1', 'nosotros_historia_2', 'nosotros_mision', 'nosotros_vision'] } 
+      key: {
+        in: [
+          'nosotros_historia_1',
+          'nosotros_historia_2',
+          'nosotros_mision',
+          'nosotros_vision',
+          'nosotros_excelencia_titulo',
+          'nosotros_excelencia_descripcion',
+          'nosotros_excelencia_stat_1_valor',
+          'nosotros_excelencia_stat_1_label',
+          'nosotros_excelencia_stat_2_valor',
+          'nosotros_excelencia_stat_2_label'
+        ]
+      }
     }
   });
 
@@ -21,6 +34,13 @@ export default async function Nosotros() {
   const historia2 = contentMap['nosotros_historia_2'] || 'A lo largo de una década, TNS ha evolucionado integrando tecnología de vanguardia y procesos de seguridad rigurosos, convirtiéndonos en el referente de confiabilidad para la industria nacional e internacional que transita por nuestras rutas.';
   const mision = contentMap['nosotros_mision'] || 'Transportadores de Norte de Santander S.A.S. brinda servicios de transporte terrestre de carga integral, superando las expectativas de nuestros aliados estratégicos mediante la excelencia operativa, la seguridad en la cadena de suministro y un equipo humano altamente calificado.';
   const vision = contentMap['nosotros_vision'] || 'Para el año 2030, TNS se proyecta como la empresa líder en soluciones logísticas del nororiente colombiano, reconocida por su innovación digital, sostenibilidad ambiental y por ser el motor principal de la competitividad regional en el comercio exterior.';
+  const excelenciaTitulo = contentMap['nosotros_excelencia_titulo'] || 'Excelencia en el Norte';
+  const excelenciaDescripcion = contentMap['nosotros_excelencia_descripcion'] || 'Nuestra sede principal en Cúcuta actúa como el epicentro de operaciones que conecta el interior del país con las fronteras internacionales, garantizando que cada despacho cumpla con los estándares más altos de la industria.';
+  const excelenciaStat1Valor = contentMap['nosotros_excelencia_stat_1_valor'] || '10+';
+  const excelenciaStat1Label = contentMap['nosotros_excelencia_stat_1_label'] || 'Años de Exp.';
+  const excelenciaStat2Valor = contentMap['nosotros_excelencia_stat_2_valor'] || '500+';
+  const excelenciaStat2Label = contentMap['nosotros_excelencia_stat_2_label'] || 'Rutas Activas';
+  const excelenciaImagen = '/mapa_colombia.png';
 
   return (
     <main className="bg-white text-primary">
@@ -156,18 +176,18 @@ export default async function Nosotros() {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 items-center gap-0">
           <div className="lg:col-span-6 pr-0 lg:pr-12 relative z-10">
             <div className="bg-white p-10 lg:p-12 shadow-sm rounded-sm border-l-8 border-secondary">
-              <h2 className="editorial-h2 mb-6">Excelencia en el Norte</h2>
+              <h2 className="editorial-h2 mb-6">{excelenciaTitulo}</h2>
               <p className="text-lg text-primary/70 mb-8 leading-relaxed">
-                Nuestra sede principal en Cúcuta actúa como el epicentro de operaciones que conecta el interior del país con las fronteras internacionales, garantizando que cada despacho cumpla con los estándares más altos de la industria.
+                {excelenciaDescripcion}
               </p>
               <div className="flex gap-12 border-t border-primary/10 pt-8">
                 <div>
-                  <div className="text-4xl font-black text-secondary">10+</div>
-                  <div className="label-technical mt-2 text-primary/60">Años de Exp.</div>
+                  <div className="text-4xl font-black text-secondary">{excelenciaStat1Valor}</div>
+                  <div className="label-technical mt-2 text-primary/60">{excelenciaStat1Label}</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-black text-secondary">500+</div>
-                  <div className="label-technical mt-2 text-primary/60">Rutas Activas</div>
+                  <div className="text-4xl font-black text-secondary">{excelenciaStat2Valor}</div>
+                  <div className="label-technical mt-2 text-primary/60">{excelenciaStat2Label}</div>
                 </div>
               </div>
             </div>
@@ -177,7 +197,7 @@ export default async function Nosotros() {
               alt="Mapa de Colombia con rutas desde Norte de Santander" 
               className="w-full h-[500px] object-cover rounded-sm group-hover:scale-110 transition-transform duration-700 shadow-xl" 
               data-alt="Mapa estilizado de Colombia con flechas rojas saliendo del departamento de Norte de Santander hacia el resto del país" 
-              src="/mapa_colombia.png"
+              src={excelenciaImagen}
             />
           </div>
         </div>

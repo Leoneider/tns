@@ -2,6 +2,7 @@ import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { uploadImageToSupabase } from '@/lib/supabase-storage';
 import FormWithToast from '../components/FormWithToast';
+import IconPicker from '../components/IconPicker';
 
 const CATEGORIES = [
   { value: 'LIQUID', label: 'Carga Líquida' },
@@ -106,15 +107,11 @@ export default async function ServiciosAdminPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-1.5 pl-1">Ícono</label>
-                  <select
+                  <IconPicker
                     name="icon"
                     defaultValue={service.icon}
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all font-medium text-gray-700"
-                  >
-                    {ICONS.map((icon) => (
-                      <option key={icon} value={icon}>{icon}</option>
-                    ))}
-                  </select>
+                    options={ICONS}
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-1.5 pl-1">Orden de aparición</label>
