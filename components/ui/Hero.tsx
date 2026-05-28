@@ -20,20 +20,23 @@ export const Hero = ({ onAction }: { onAction?: any }) => (
       <div className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/0 to-white/20" />
     </div>
 
-    <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+    <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-10 xl:gap-14 items-center">
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
+        className="max-w-xl"
       >
-        <span className="label-technical mb-4 block">Logística de Alto Nivel</span>
-        <h1 className="kinetic-headline mb-8">
-          Moviendo el <span className="text-secondary">Norte</span> con Precisión
+        <span className="label-technical mb-5 block">Logística de Alto Nivel</span>
+        <h1 className="mb-7 text-[2.15rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.35rem] xl:text-[3.7rem] leading-[0.92] -tracking-[0.015em] uppercase font-black">
+          <span className="block">Transportadores</span>
+          <span className="block">del <span className="text-secondary">Norte</span></span>
+          <span className="block">de Santander</span>
         </h1>
-        <p className="text-lg text-primary/70 max-w-md mb-10 leading-relaxed">
+        <p className="text-lg text-primary/70 max-w-lg mb-10 leading-relaxed">
           Líderes en transporte terrestre y soluciones logísticas integrales en Norte de Santander. Eficiencia, seguridad y compromiso en cada kilómetro.
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4 items-center">
           <a 
             href="https://wa.me/573182172113"
             target="_blank"
