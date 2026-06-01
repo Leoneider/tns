@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import { Suspense } from "react";
 import { localBusinessJsonLd, organizationJsonLd, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { GA_MEASUREMENT_ID } from "@/lib/gtag";
 import GoogleAnalyticsRouteTracker from "@/components/GoogleAnalyticsRouteTracker";
@@ -57,7 +58,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
         {children}
-        <GoogleAnalyticsRouteTracker />
+        <Suspense fallback={null}>
+          <GoogleAnalyticsRouteTracker />
+        </Suspense>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
