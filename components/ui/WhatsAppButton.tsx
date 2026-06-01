@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { trackWhatsAppClick } from "@/lib/gtag";
 
 export function WhatsAppButton() {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,6 +21,12 @@ export function WhatsAppButton() {
         href="https://wa.me/573182172113"
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() =>
+          trackWhatsAppClick({
+            source: "floating_whatsapp_button",
+            phone: "573182172113",
+          })
+        }
         className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-[#25d366]/30 transition-all duration-300 hover:scale-110 hover:bg-[#20ba56] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2"
         aria-label="Chat on WhatsApp"
       >

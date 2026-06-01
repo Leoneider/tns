@@ -1,6 +1,8 @@
 "use client";
 
 import { Phone, Mail } from 'lucide-react';
+import type { SubmitEventHandler } from 'react';
+import { trackContactFormSubmit } from '@/lib/gtag';
 
 type ContactFormProps = {
   description?: string;
@@ -11,6 +13,18 @@ export const ContactForm = ({
   description = 'Estamos listos para optimizar su logística. Contáctenos hoy mismo.',
   withSection = true,
 }: ContactFormProps) => {
+  const handleSubmit: SubmitEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const serviceType = formData.get('serviceType')?.toString();
+
+    trackContactFormSubmit({
+      source: 'contact_form',
+      serviceType,
+    });
+  };
+
   const card = (
     <div className="bg-white rounded-sm shadow-2xl overflow-hidden grid lg:grid-cols-5">
       {/* Left info panel */}
@@ -89,7 +103,7 @@ export const ContactForm = ({
       {/* Right form */}
       <div className="lg:col-span-3 p-12">
         <h3 className="text-2xl font-black uppercase text-primary mb-8">Envíenos un Mensaje</h3>
-        <form className="grid sm:grid-cols-2 gap-8" onSubmit={(e) => e.preventDefault()}>
+        <form className="grid sm:grid-cols-2 gap-8" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-2">
             <label className="label-technical">Nombre Completo</label>
             <input type="text" className="input-minimal" placeholder="Juan Pérez" />
@@ -104,7 +118,7 @@ export const ContactForm = ({
           </div>
           <div className="flex flex-col gap-2">
             <label className="label-technical">Tipo de Servicio</label>
-            <select className="input-minimal bg-transparent">
+            <select name="serviceType" className="input-minimal bg-transparent">
               <option>Carga Pesada</option>
               <option>Logística Express</option>
               <option>Transporte Seguro</option>

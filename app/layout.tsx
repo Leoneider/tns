@@ -2,6 +2,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import { localBusinessJsonLd, organizationJsonLd, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { GA_MEASUREMENT_ID } from "@/lib/gtag";
+import GoogleAnalyticsRouteTracker from "@/components/GoogleAnalyticsRouteTracker";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -55,8 +57,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
         {children}
+        <GoogleAnalyticsRouteTracker />
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -64,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
+            gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
       </body>

@@ -2,6 +2,7 @@
 
 import { Phone, Mail, MapPin, Clock, Building2, Star } from 'lucide-react';
 import { ContactForm } from './ContactForm';
+import { trackWhatsAppClick } from '@/lib/gtag';
 
 const branches = [
   {
@@ -192,6 +193,12 @@ export const ContactSection = () => (
                 href={`https://wa.me/57${branch.phones[0].replace(/\s/g, '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackWhatsAppClick({
+                    source: `contact_branch_${branch.id}`,
+                    phone: `57${branch.phones[0].replace(/\s/g, '')}`,
+                  })
+                }
                 className={`mt-auto flex items-center justify-center gap-2 w-full py-3 rounded-sm font-bold uppercase tracking-widest text-sm transition-all ${
                   branch.isMain
                     ? 'bg-secondary text-white hover:bg-primary'
