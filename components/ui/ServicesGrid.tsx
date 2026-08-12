@@ -72,12 +72,12 @@ export async function ServicesGrid() {
               </div>
 
               {/* Image */}
-              <div className="relative h-[420px] rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative h-[420px] rounded-2xl overflow-hidden shadow-2xl group">
                 <Image
-                  src={(liquidService as any).imageUrl || "/liquid-cargo.png"}
+                  src={(liquidService as any).imageUrl || "/liquid_cargo_truck_edited.png"}
                   alt="Transporte de carga líquida - cisterna TNS"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                   unoptimized={!!(liquidService as any).imageUrl}
                   priority
                 />
@@ -101,12 +101,12 @@ export async function ServicesGrid() {
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               {/* Image (left on this one) */}
-              <div className="relative h-[420px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1">
+              <div className="relative h-[420px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1 group">
                 <Image
-                  src={(dryService as any).imageUrl || "/dry-cargo.png"}
+                  src={(dryService as any).imageUrl || "/dry_cargo_truck_edited.png"}
                   alt="Transporte de carga seca - TNS"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                   unoptimized={!!(dryService as any).imageUrl}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-transparent to-transparent" />

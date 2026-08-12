@@ -60,11 +60,10 @@ export const Hero = ({ onAction }: { onAction?: any }) => (
       >
         <div className="aspect-[4/5] bg-primary overflow-hidden rounded-sm relative group">
           <Image 
-            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1000" 
-            className="w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700"
-            alt="Truck"
+            src="/hero_truck_edited.png" 
+            className="w-full h-full object-cover brightness-90 group-hover:scale-110 group-hover:brightness-110 transition-all duration-700"
+            alt="Kenworth Truck"
             fill
-            referrerPolicy="no-referrer"
           />
           <div className="absolute bottom-0 left-0 p-8 text-white">
             <div className="text-6xl font-black mb-2">24/7</div>
